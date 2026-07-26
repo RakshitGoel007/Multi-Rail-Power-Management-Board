@@ -1,0 +1,1193 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 3423 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (1) Tj ET
+BT /F2 18 Tf 54.00 762.00 Td (Exhaustive Project Report: Multi-Rail Power) Tj ET
+BT /F2 18 Tf 54.00 740.00 Td (Management Board) Tj ET
+BT /F1 10 Tf 54.00 705.00 Td (Prepared for: Rakshit Goel) Tj ET
+BT /F1 10 Tf 54.00 688.00 Td (Project type: hardware design, power electronics, schematic capture, simulation, and) Tj ET
+BT /F1 10 Tf 54.00 674.00 Td (interview portfolio) Tj ET
+BT /F1 10 Tf 54.00 657.00 Td (Main tools: LTspice, KiCad, TI regulator models, datasheets, behavioral simulation) Tj ET
+BT /F1 10 Tf 54.00 640.00 Td (Repository: `Multi-Rail-Power-Management-Board`) Tj ET
+BT /F2 14 Tf 54.00 609.00 Td (1. Project Overview) Tj ET
+BT /F1 10 Tf 54.00 580.00 Td (This project is a multi-rail power management design for a small embedded system made) Tj ET
+BT /F1 10 Tf 54.00 566.00 Td (from an SoC and a sensor/camera cluster. The board takes a single 5 V input and) Tj ET
+BT /F1 10 Tf 54.00 552.00 Td (generates three regulated voltage rails:) Tj ET
+BT /F3 7.5 Tf 60.00 529.00 Td (Rail   | Voltage | Intended Load            | Enable Order) Tj ET
+BT /F3 7.5 Tf 60.00 519.00 Td (-------+---------+--------------------------+-------------) Tj ET
+BT /F3 7.5 Tf 60.00 509.00 Td (Rail A | 1.2 V   | SoC core logic           | First       ) Tj ET
+BT /F3 7.5 Tf 60.00 499.00 Td (Rail B | 1.8 V   | I/O logic, memory interf | Second      ) Tj ET
+BT /F3 7.5 Tf 60.00 489.00 Td (Rail C | 3.3 V   | sensors, camera, periphe | Third       ) Tj ET
+BT /F1 10 Tf 54.00 468.00 Td (The core idea is not just to generate voltages. The project demonstrates an engineering) Tj ET
+BT /F1 10 Tf 54.00 454.00 Td (workflow:) Tj ET
+BT /F1 10 Tf 72.00 431.00 Td (- define voltage/current requirements,) Tj ET
+BT /F1 10 Tf 72.00 414.00 Td (- choose a power architecture,) Tj ET
+BT /F1 10 Tf 72.00 397.00 Td (- model startup sequencing,) Tj ET
+BT /F1 10 Tf 72.00 380.00 Td (- simulate load transient behavior,) Tj ET
+BT /F1 10 Tf 72.00 363.00 Td (- capture a readable KiCad schematic,) Tj ET
+BT /F1 10 Tf 72.00 346.00 Td (- include protection and test points,) Tj ET
+BT /F1 10 Tf 72.00 329.00 Td (- prepare documentation and interview explanation material.) Tj ET
+BT /F1 10 Tf 54.00 306.00 Td (The project is portfolio-oriented. It is designed to show that the designer understands) Tj ET
+BT /F1 10 Tf 54.00 292.00 Td (both circuit behavior and the practical workflow of building and explaining a hardware) Tj ET
+BT /F1 10 Tf 54.00 278.00 Td (subsystem.) Tj ET
+BT /F2 14 Tf 54.00 247.00 Td (2. What The Project Does) Tj ET
+BT /F1 10 Tf 54.00 218.00 Td (At a system level, the project does the following:) Tj ET
+BT /F1 10 Tf 68.00 195.00 Td (1. Accepts a nominal 5 V input supply.) Tj ET
+BT /F1 10 Tf 68.00 178.00 Td (2. Provides reverse-polarity protection at the input.) Tj ET
+BT /F1 10 Tf 68.00 161.00 Td (3. Generates a 1.2 V rail for SoC core logic.) Tj ET
+BT /F1 10 Tf 68.00 144.00 Td (4. Generates a 1.8 V rail for I/O logic and low-voltage peripherals.) Tj ET
+BT /F1 10 Tf 68.00 127.00 Td (5. Generates a 3.3 V rail for sensors/camera/peripherals.) Tj ET
+BT /F1 10 Tf 68.00 110.00 Td (6. Sequences the rails in a controlled order.) Tj ET
+BT /F1 10 Tf 68.00 93.00 Td (7. Adds output capacitors to support transient current demand.) Tj ET
+BT /F1 10 Tf 68.00 76.00 Td (8. Adds equivalent loads for simulation and validation.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 3675 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (2) Tj ET
+BT /F1 10 Tf 68.00 772.00 Td (9. Adds a Rail C load-step event to represent a sensor/camera waking up.) Tj ET
+BT /F1 10 Tf 68.00 755.00 Td (10. Adds enable monitor signals so startup timing can be plotted clearly.) Tj ET
+BT /F1 10 Tf 68.00 738.00 Td (11. Provides a KiCad schematic with test points and a BOM.) Tj ET
+BT /F1 10 Tf 68.00 721.00 Td (12. Exports a schematic PDF, SVG/PNG preview, netlist, BOM, and ERC report.) Tj ET
+BT /F1 10 Tf 68.00 704.00 Td (13. Provides a complete report and interview question bank.) Tj ET
+BT /F1 10 Tf 54.00 681.00 Td (The LTspice simulation focuses on startup behavior and load transient response. The) Tj ET
+BT /F1 10 Tf 54.00 667.00 Td (KiCad schematic focuses on readability, design intent, component organization, and) Tj ET
+BT /F1 10 Tf 54.00 653.00 Td (bring-up/debug access.) Tj ET
+BT /F2 14 Tf 54.00 622.00 Td (3. Why Multi-Rail Power Exists) Tj ET
+BT /F1 10 Tf 54.00 593.00 Td (Modern embedded systems rarely run from one supply voltage. A typical SoC may have:) Tj ET
+BT /F1 10 Tf 72.00 570.00 Td (- a low-voltage core supply for internal logic,) Tj ET
+BT /F1 10 Tf 72.00 553.00 Td (- a separate I/O supply for interface pins,) Tj ET
+BT /F1 10 Tf 72.00 536.00 Td (- a higher peripheral supply for sensors, cameras, RF modules, or analog front ends.) Tj ET
+BT /F1 10 Tf 54.00 513.00 Td (Using separate rails allows each subsystem to receive the voltage it needs. It also) Tj ET
+BT /F1 10 Tf 54.00 499.00 Td (improves control over noise, sequencing, power consumption, and debugging.) Tj ET
+BT /F1 10 Tf 54.00 476.00 Td (In this project:) Tj ET
+BT /F1 10 Tf 72.00 453.00 Td (- 1.2 V represents a core rail.) Tj ET
+BT /F1 10 Tf 72.00 436.00 Td (- 1.8 V represents an I/O rail.) Tj ET
+BT /F1 10 Tf 72.00 419.00 Td (- 3.3 V represents a peripheral/sensor rail.) Tj ET
+BT /F1 10 Tf 54.00 396.00 Td (This is a realistic split for many embedded boards.) Tj ET
+BT /F2 14 Tf 54.00 365.00 Td (4. Design Requirements) Tj ET
+BT /F2 11 Tf 54.00 336.00 Td (4.1 Electrical Requirements) Tj ET
+BT /F3 7.5 Tf 60.00 312.00 Td (Requirement           | Target                  ) Tj ET
+BT /F3 7.5 Tf 60.00 302.00 Td (----------------------+-------------------------) Tj ET
+BT /F3 7.5 Tf 60.00 292.00 Td (Input voltage         | 5 V nominal             ) Tj ET
+BT /F3 7.5 Tf 60.00 282.00 Td (Output Rail A         | 1.2 V                   ) Tj ET
+BT /F3 7.5 Tf 60.00 272.00 Td (Output Rail B         | 1.8 V                   ) Tj ET
+BT /F3 7.5 Tf 60.00 262.00 Td (Output Rail C         | 3.3 V                   ) Tj ET
+BT /F3 7.5 Tf 60.00 252.00 Td (Rail A current target | 500 mA equivalent       ) Tj ET
+BT /F3 7.5 Tf 60.00 242.00 Td (Rail B current target | 600 mA equivalent       ) Tj ET
+BT /F3 7.5 Tf 60.00 232.00 Td (Rail C current target | 800 mA transient case   ) Tj ET
+BT /F3 7.5 Tf 60.00 222.00 Td (Startup sequence      | A first, B second, C thi) Tj ET
+BT /F3 7.5 Tf 60.00 212.00 Td (Rail B delay          | about 2 ms after Rail A ) Tj ET
+BT /F3 7.5 Tf 60.00 202.00 Td (Rail C delay          | about 4 ms after Rail A ) Tj ET
+BT /F3 7.5 Tf 60.00 192.00 Td (Rail C load step      | 0.1 A to 0.8 A at 8 ms  ) Tj ET
+BT /F3 7.5 Tf 60.00 182.00 Td (Simulation duration   | 20 ms transient         ) Tj ET
+BT /F2 11 Tf 54.00 161.00 Td (4.2 Functional Requirements) Tj ET
+BT /F1 10 Tf 54.00 137.00 Td (The project must:) Tj ET
+BT /F1 10 Tf 72.00 114.00 Td (- show clear startup sequencing,) Tj ET
+BT /F1 10 Tf 72.00 97.00 Td (- include realistic rail names,) Tj ET
+BT /F1 10 Tf 72.00 80.00 Td (- include output capacitance,) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 2853 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (3) Tj ET
+BT /F1 10 Tf 72.00 772.00 Td (- model expected load conditions,) Tj ET
+BT /F1 10 Tf 72.00 755.00 Td (- include transient response observation,) Tj ET
+BT /F1 10 Tf 72.00 738.00 Td (- include test points,) Tj ET
+BT /F1 10 Tf 72.00 721.00 Td (- be explainable in an interview,) Tj ET
+BT /F1 10 Tf 72.00 704.00 Td (- open reliably in LTspice and KiCad.) Tj ET
+BT /F2 11 Tf 54.00 681.00 Td (4.3 Documentation Requirements) Tj ET
+BT /F1 10 Tf 54.00 657.00 Td (The project must include:) Tj ET
+BT /F1 10 Tf 72.00 634.00 Td (- a technical report,) Tj ET
+BT /F1 10 Tf 72.00 617.00 Td (- an interview Q&A bank,) Tj ET
+BT /F1 10 Tf 72.00 600.00 Td (- a one-page summary,) Tj ET
+BT /F1 10 Tf 72.00 583.00 Td (- instructions for opening and running,) Tj ET
+BT /F1 10 Tf 72.00 566.00 Td (- BOM files,) Tj ET
+BT /F1 10 Tf 72.00 549.00 Td (- simulation plots,) Tj ET
+BT /F1 10 Tf 72.00 532.00 Td (- schematic exports.) Tj ET
+BT /F2 14 Tf 54.00 501.00 Td (5. Power Architecture) Tj ET
+BT /F1 10 Tf 54.00 472.00 Td (The architecture is:) Tj ET
+BT /F3 8 Tf 72.00 447.00 Td (5 V input) Tj ET
+BT /F3 8 Tf 72.00 436.00 Td (  |) Tj ET
+BT /F3 8 Tf 72.00 425.00 Td (  +--> input protection) Tj ET
+BT /F3 8 Tf 72.00 414.00 Td (  |) Tj ET
+BT /F3 8 Tf 72.00 403.00 Td (  +--> Rail A regulator --> 1.2 V core rail) Tj ET
+BT /F3 8 Tf 72.00 392.00 Td (  |) Tj ET
+BT /F3 8 Tf 72.00 381.00 Td (  +--> Rail B regulator --> 1.8 V I/O rail) Tj ET
+BT /F3 8 Tf 72.00 370.00 Td (  |) Tj ET
+BT /F3 8 Tf 72.00 359.00 Td (  +--> Rail C regulator/load switch --> 3.3 V sensor rail) Tj ET
+BT /F1 10 Tf 54.00 337.00 Td (Rail A comes up first because SoC internal logic should be alive before I/O and) Tj ET
+BT /F1 10 Tf 54.00 323.00 Td (peripherals are powered. Rail B comes second because I/O pads often depend on the core) Tj ET
+BT /F1 10 Tf 54.00 309.00 Td (domain being valid. Rail C comes third because sensors/cameras can draw significant) Tj ET
+BT /F1 10 Tf 54.00 295.00 Td (current and should not be powered before the processor/I/O side is ready.) Tj ET
+BT /F2 14 Tf 54.00 264.00 Td (6. Rail Definitions) Tj ET
+BT /F2 11 Tf 54.00 235.00 Td (6.1 Rail A: 1.2 V Core) Tj ET
+BT /F1 10 Tf 54.00 211.00 Td (Rail A is the first rail. It represents the SoC core supply. Core rails often power CPU) Tj ET
+BT /F1 10 Tf 54.00 197.00 Td (logic, internal state machines, memory controllers, PLL blocks, or digital logic.) Tj ET
+BT /F1 10 Tf 54.00 174.00 Td (Design intent:) Tj ET
+BT /F1 10 Tf 72.00 151.00 Td (- start at 0 ms,) Tj ET
+BT /F1 10 Tf 72.00 134.00 Td (- settle near 1.2 V,) Tj ET
+BT /F1 10 Tf 72.00 117.00 Td (- support an equivalent 500 mA load,) Tj ET
+BT /F1 10 Tf 72.00 100.00 Td (- provide a reference for later rails.) Tj ET
+BT /F1 10 Tf 54.00 77.00 Td (Equivalent load:) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 2746 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (4) Tj ET
+BT /F3 8 Tf 72.00 772.00 Td (R = V / I = 1.2 V / 0.5 A = 2.4 ohm) Tj ET
+BT /F2 11 Tf 54.00 750.00 Td (6.2 Rail B: 1.8 V I/O) Tj ET
+BT /F1 10 Tf 54.00 726.00 Td (Rail B is the second rail. It represents low-voltage I/O logic or peripheral interfaces.) Tj ET
+BT /F1 10 Tf 54.00 703.00 Td (Design intent:) Tj ET
+BT /F1 10 Tf 72.00 680.00 Td (- start around 2 ms,) Tj ET
+BT /F1 10 Tf 72.00 663.00 Td (- settle near 1.8 V,) Tj ET
+BT /F1 10 Tf 72.00 646.00 Td (- support an equivalent 600 mA load,) Tj ET
+BT /F1 10 Tf 72.00 629.00 Td (- avoid powering I/O before the core rail.) Tj ET
+BT /F1 10 Tf 54.00 606.00 Td (Equivalent load:) Tj ET
+BT /F3 8 Tf 72.00 581.00 Td (R = V / I = 1.8 V / 0.6 A = 3.0 ohm) Tj ET
+BT /F2 11 Tf 54.00 559.00 Td (6.3 Rail C: 3.3 V Sensor Rail) Tj ET
+BT /F1 10 Tf 54.00 535.00 Td (Rail C is the third rail. It represents sensors, camera modules, and other 3.3 V) Tj ET
+BT /F1 10 Tf 54.00 521.00 Td (peripherals.) Tj ET
+BT /F1 10 Tf 54.00 498.00 Td (Design intent:) Tj ET
+BT /F1 10 Tf 72.00 475.00 Td (- start around 4 ms,) Tj ET
+BT /F1 10 Tf 72.00 458.00 Td (- settle near 3.3 V,) Tj ET
+BT /F1 10 Tf 72.00 441.00 Td (- support a transient load jump,) Tj ET
+BT /F1 10 Tf 72.00 424.00 Td (- include a load-switch concept for peripheral control.) Tj ET
+BT /F1 10 Tf 54.00 401.00 Td (Full-load equivalent resistance:) Tj ET
+BT /F3 8 Tf 72.00 376.00 Td (R = V / I = 3.3 V / 0.8 A = 4.125 ohm) Tj ET
+BT /F1 10 Tf 54.00 354.00 Td (In the main simulation, Rail C uses a current load-step model because that better) Tj ET
+BT /F1 10 Tf 54.00 340.00 Td (represents a sensor or camera suddenly waking up.) Tj ET
+BT /F2 14 Tf 54.00 309.00 Td (7. Why Sequencing Matters) Tj ET
+BT /F1 10 Tf 54.00 280.00 Td (Power sequencing is important because ICs are not always tolerant of arbitrary rail) Tj ET
+BT /F1 10 Tf 54.00 266.00 Td (order. Incorrect sequencing can cause:) Tj ET
+BT /F1 10 Tf 72.00 243.00 Td (- back-powering through I/O pins,) Tj ET
+BT /F1 10 Tf 72.00 226.00 Td (- current injection through ESD diodes,) Tj ET
+BT /F1 10 Tf 72.00 209.00 Td (- undefined boot states,) Tj ET
+BT /F1 10 Tf 72.00 192.00 Td (- latch-up risk,) Tj ET
+BT /F1 10 Tf 72.00 175.00 Td (- peripherals starting before the controller is ready,) Tj ET
+BT /F1 10 Tf 72.00 158.00 Td (- increased inrush current,) Tj ET
+BT /F1 10 Tf 72.00 141.00 Td (- failed reset behavior.) Tj ET
+BT /F1 10 Tf 54.00 118.00 Td (The intended startup order is:) Tj ET
+BT /F3 8 Tf 72.00 93.00 Td (Rail A: 1.2 V core       t = 0 ms) Tj ET
+BT /F3 8 Tf 72.00 82.00 Td (Rail B: 1.8 V I/O        t = 2 ms) Tj ET
+BT /F3 8 Tf 72.00 71.00 Td (Rail C: 3.3 V sensors    t = 4 ms) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 2957 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (5) Tj ET
+BT /F1 10 Tf 54.00 772.00 Td (For power-down, the preferred order is normally reverse:) Tj ET
+BT /F3 8 Tf 72.00 747.00 Td (Rail C off first) Tj ET
+BT /F3 8 Tf 72.00 736.00 Td (Rail B off second) Tj ET
+BT /F3 8 Tf 72.00 725.00 Td (Rail A off last) Tj ET
+BT /F1 10 Tf 54.00 703.00 Td (This prevents peripherals and I/O from remaining powered while the core logic is) Tj ET
+BT /F1 10 Tf 54.00 689.00 Td (unavailable.) Tj ET
+BT /F2 14 Tf 54.00 658.00 Td (8. Component-Level Design) Tj ET
+BT /F2 11 Tf 54.00 629.00 Td (8.1 Input Protection) Tj ET
+BT /F1 10 Tf 54.00 605.00 Td (The schematic includes `D1 SS34`, a Schottky diode used for reverse-polarity protection.) Tj ET
+BT /F1 10 Tf 54.00 591.00 Td (The purpose is to protect the board if the input supply is accidentally connected) Tj ET
+BT /F1 10 Tf 54.00 577.00 Td (backwards.) Tj ET
+BT /F1 10 Tf 54.00 554.00 Td (Advantages:) Tj ET
+BT /F1 10 Tf 72.00 531.00 Td (- simple,) Tj ET
+BT /F1 10 Tf 72.00 514.00 Td (- cheap,) Tj ET
+BT /F1 10 Tf 72.00 497.00 Td (- easy to understand,) Tj ET
+BT /F1 10 Tf 72.00 480.00 Td (- robust for a student-level schematic.) Tj ET
+BT /F1 10 Tf 54.00 457.00 Td (Disadvantages:) Tj ET
+BT /F1 10 Tf 72.00 434.00 Td (- forward voltage drop,) Tj ET
+BT /F1 10 Tf 72.00 417.00 Td (- power loss,) Tj ET
+BT /F1 10 Tf 72.00 400.00 Td (- heating at high current.) Tj ET
+BT /F1 10 Tf 54.00 377.00 Td (Power loss estimate:) Tj ET
+BT /F3 8 Tf 72.00 352.00 Td (P = I * Vf) Tj ET
+BT /F1 10 Tf 54.00 330.00 Td (If current is 1 A and diode drop is 0.4 V:) Tj ET
+BT /F3 8 Tf 72.00 305.00 Td (P = 1 A * 0.4 V = 0.4 W) Tj ET
+BT /F1 10 Tf 54.00 283.00 Td (For a production board, a P-MOSFET ideal-diode style reverse-protection circuit would be) Tj ET
+BT /F1 10 Tf 54.00 269.00 Td (more efficient.) Tj ET
+BT /F2 11 Tf 54.00 246.00 Td (8.2 Regulator Stages) Tj ET
+BT /F1 10 Tf 54.00 222.00 Td (The guide-selected regulators/models are:) Tj ET
+BT /F3 7.5 Tf 60.00 199.00 Td (Ref | Part     | Purpose                 ) Tj ET
+BT /F3 7.5 Tf 60.00 189.00 Td (----+----------+-------------------------) Tj ET
+BT /F3 7.5 Tf 60.00 179.00 Td (U1  | TPS62203 | buck regulator reference) Tj ET
+BT /F3 7.5 Tf 60.00 169.00 Td (U2  | TPS62240 | buck regulator reference) Tj ET
+BT /F3 7.5 Tf 60.00 159.00 Td (U3  | TLV70012 | LDO reference for 1.2 V ) Tj ET
+BT /F1 10 Tf 54.00 138.00 Td (Important caveat:) Tj ET
+BT /F1 10 Tf 54.00 115.00 Td (The selected part numbers are useful for model practice and schematic learning, but a) Tj ET
+BT /F1 10 Tf 54.00 101.00 Td (real fabricated board must verify regulator current ratings. If the actual rails require) Tj ET
+BT /F1 10 Tf 54.00 87.00 Td (500 mA, 600 mA, and 800 mA continuously, the selected parts may not all be suitable. A) Tj ET
+BT /F1 10 Tf 54.00 73.00 Td (competent final design would select regulators with adequate current margin, thermal) Tj ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2990 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (6) Tj ET
+BT /F1 10 Tf 54.00 772.00 Td (performance, and package capability.) Tj ET
+BT /F2 11 Tf 54.00 749.00 Td (8.3 Output Capacitors) Tj ET
+BT /F1 10 Tf 54.00 725.00 Td (Each rail uses a 22 uF output capacitor in the simulation. Output capacitors:) Tj ET
+BT /F1 10 Tf 72.00 702.00 Td (- reduce ripple,) Tj ET
+BT /F1 10 Tf 72.00 685.00 Td (- support transient load steps,) Tj ET
+BT /F1 10 Tf 72.00 668.00 Td (- improve local energy availability,) Tj ET
+BT /F1 10 Tf 72.00 651.00 Td (- affect regulator loop stability,) Tj ET
+BT /F1 10 Tf 72.00 634.00 Td (- reduce high-frequency impedance at the rail.) Tj ET
+BT /F1 10 Tf 54.00 611.00 Td (Ceramic X7R capacitors are used conceptually because they have good temperature behavior) Tj ET
+BT /F1 10 Tf 54.00 597.00 Td (compared with lower-grade dielectrics.) Tj ET
+BT /F1 10 Tf 54.00 574.00 Td (Real-world note:) Tj ET
+BT /F1 10 Tf 54.00 551.00 Td (Ceramic capacitor effective capacitance decreases with DC bias. A 22 uF capacitor may) Tj ET
+BT /F1 10 Tf 54.00 537.00 Td (behave like a much smaller capacitor at its operating voltage, depending on package and) Tj ET
+BT /F1 10 Tf 54.00 523.00 Td (dielectric.) Tj ET
+BT /F2 11 Tf 54.00 500.00 Td (8.4 Equivalent Loads) Tj ET
+BT /F1 10 Tf 54.00 476.00 Td (Resistive loads are used for Rail A and Rail B:) Tj ET
+BT /F3 7.5 Tf 60.00 453.00 Td (Rail | Voltage | Current | Load   ) Tj ET
+BT /F3 7.5 Tf 60.00 443.00 Td (-----+---------+---------+--------) Tj ET
+BT /F3 7.5 Tf 60.00 433.00 Td (A    | 1.2 V   | 0.5 A   | 2.4 ohm) Tj ET
+BT /F3 7.5 Tf 60.00 423.00 Td (B    | 1.8 V   | 0.6 A   | 3.0 ohm) Tj ET
+BT /F1 10 Tf 54.00 402.00 Td (Rail C includes a light load and a pulsed load step.) Tj ET
+BT /F2 11 Tf 54.00 379.00 Td (8.5 Rail C Load Step) Tj ET
+BT /F1 10 Tf 54.00 355.00 Td (Rail C models a sudden load increase:) Tj ET
+BT /F3 8 Tf 72.00 330.00 Td (0.1 A light load -> 0.8 A active load) Tj ET
+BT /F1 10 Tf 54.00 308.00 Td (This represents a sensor/camera subsystem waking up or entering active mode.) Tj ET
+BT /F1 10 Tf 54.00 285.00 Td (The project measures:) Tj ET
+BT /F1 10 Tf 72.00 262.00 Td (- pre-step average voltage,) Tj ET
+BT /F1 10 Tf 72.00 245.00 Td (- minimum voltage during load step,) Tj ET
+BT /F1 10 Tf 72.00 228.00 Td (- recovered average voltage.) Tj ET
+BT /F1 10 Tf 54.00 205.00 Td (This shows whether the rail droops too much and whether it recovers.) Tj ET
+BT /F2 11 Tf 54.00 182.00 Td (8.6 Enable Monitor Signals) Tj ET
+BT /F1 10 Tf 54.00 158.00 Td (The LTspice schematic includes behavioral enable monitor sources:) Tj ET
+BT /F3 8 Tf 72.00 133.00 Td (EN_A) Tj ET
+BT /F3 8 Tf 72.00 122.00 Td (EN_B) Tj ET
+BT /F3 8 Tf 72.00 111.00 Td (EN_C) Tj ET
+BT /F1 10 Tf 54.00 89.00 Td (These are not meant to be final production enable circuits. They are included so the) Tj ET
+BT /F1 10 Tf 54.00 75.00 Td (startup sequence can be plotted clearly against the rail voltages.) Tj ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 2908 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (7) Tj ET
+BT /F1 10 Tf 54.00 772.00 Td (In a real design, these enables could be produced by:) Tj ET
+BT /F1 10 Tf 72.00 749.00 Td (- RC delay circuits,) Tj ET
+BT /F1 10 Tf 72.00 732.00 Td (- power-good chaining,) Tj ET
+BT /F1 10 Tf 72.00 715.00 Td (- a microcontroller,) Tj ET
+BT /F1 10 Tf 72.00 698.00 Td (- a PMIC,) Tj ET
+BT /F1 10 Tf 72.00 681.00 Td (- a supervisor/sequencer IC.) Tj ET
+BT /F2 14 Tf 54.00 650.00 Td (9. LTspice Simulation) Tj ET
+BT /F2 11 Tf 54.00 621.00 Td (9.1 Main Files) Tj ET
+BT /F3 8 Tf 72.00 595.00 Td (ltspice/PowerRails_Behavioral_Complete.asc) Tj ET
+BT /F3 8 Tf 72.00 584.00 Td (ltspice/PowerRails_Behavioral_Complete.cir) Tj ET
+BT /F1 10 Tf 54.00 562.00 Td (The `.asc` file is the visual schematic-style simulation. The `.cir` file is the) Tj ET
+BT /F1 10 Tf 54.00 548.00 Td (companion plain netlist.) Tj ET
+BT /F2 11 Tf 54.00 525.00 Td (9.2 Why Behavioral Modeling Was Used) Tj ET
+BT /F1 10 Tf 54.00 501.00 Td (Vendor regulator models can be fragile. They may depend on exact subcircuit names,) Tj ET
+BT /F1 10 Tf 54.00 487.00 Td (hidden pins, PSPICE compatibility, or symbol alignment. A behavioral model allows the) Tj ET
+BT /F1 10 Tf 54.00 473.00 Td (project to validate the architecture first:) Tj ET
+BT /F1 10 Tf 72.00 450.00 Td (- startup order,) Tj ET
+BT /F1 10 Tf 72.00 433.00 Td (- expected output voltages,) Tj ET
+BT /F1 10 Tf 72.00 416.00 Td (- enable timing,) Tj ET
+BT /F1 10 Tf 72.00 399.00 Td (- load step behavior,) Tj ET
+BT /F1 10 Tf 72.00 382.00 Td (- measurement workflow.) Tj ET
+BT /F1 10 Tf 54.00 359.00 Td (The behavioral model is not a replacement for a final regulator simulation. It is a fast) Tj ET
+BT /F1 10 Tf 54.00 345.00 Td (architecture-level verification step.) Tj ET
+BT /F2 11 Tf 54.00 322.00 Td (9.3 Behavioral Equations) Tj ET
+BT /F1 10 Tf 54.00 298.00 Td (The LTspice schematic uses function directives such as:) Tj ET
+BT /F3 8 Tf 72.00 273.00 Td (.func RA\(t\) if\(t>=0,1.2,0\)) Tj ET
+BT /F3 8 Tf 72.00 262.00 Td (.func RB\(t\) if\(t>=2m,1.8,0\)) Tj ET
+BT /F3 8 Tf 72.00 251.00 Td (.func RC\(t\) if\(t>=4m,3.292,0\)-if\(t>=8m,if\(t<12m,56m,0\),0\)) Tj ET
+BT /F3 8 Tf 72.00 240.00 Td (.func LOAD\(t\) if\(t>=8m,if\(t<12m,0.7,0\),0\)) Tj ET
+BT /F1 10 Tf 54.00 218.00 Td (This keeps the schematic visually clean because each behavioral source displays a short) Tj ET
+BT /F1 10 Tf 54.00 204.00 Td (expression:) Tj ET
+BT /F3 8 Tf 72.00 179.00 Td (V=RA\(time\)) Tj ET
+BT /F3 8 Tf 72.00 168.00 Td (V=RB\(time\)) Tj ET
+BT /F3 8 Tf 72.00 157.00 Td (V=RC\(time\)) Tj ET
+BT /F3 8 Tf 72.00 146.00 Td (I=LOAD\(time\)) Tj ET
+BT /F2 11 Tf 54.00 124.00 Td (9.4 Simulation Command) Tj ET
+BT /F3 8 Tf 72.00 98.00 Td (.tran 20m startup) Tj ET
+BT /F1 10 Tf 54.00 76.00 Td (This runs a transient simulation from 0 ms to 20 ms and starts from supply startup) Tj ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 3267 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (8) Tj ET
+BT /F1 10 Tf 54.00 772.00 Td (conditions.) Tj ET
+BT /F2 11 Tf 54.00 749.00 Td (9.5 Signals To Plot) Tj ET
+BT /F3 8 Tf 72.00 723.00 Td (V\(RAIL_A_1V2\)) Tj ET
+BT /F3 8 Tf 72.00 712.00 Td (V\(RAIL_B_1V8\)) Tj ET
+BT /F3 8 Tf 72.00 701.00 Td (V\(RAIL_C_3V3\)) Tj ET
+BT /F3 8 Tf 72.00 690.00 Td (V\(EN_A\)) Tj ET
+BT /F3 8 Tf 72.00 679.00 Td (V\(EN_B\)) Tj ET
+BT /F3 8 Tf 72.00 668.00 Td (V\(EN_C\)) Tj ET
+BT /F3 8 Tf 72.00 657.00 Td (I\(IC_LOADSTEP\)) Tj ET
+BT /F2 11 Tf 54.00 635.00 Td (9.6 Expected Results) Tj ET
+BT /F1 10 Tf 54.00 611.00 Td (Expected startup:) Tj ET
+BT /F3 7.5 Tf 60.00 588.00 Td (Signal           | Expected Behavior       ) Tj ET
+BT /F3 7.5 Tf 60.00 578.00 Td (-----------------+-------------------------) Tj ET
+BT /F3 7.5 Tf 60.00 568.00 Td (`RAIL_A_1V2`     | rises first to 1.2 V    ) Tj ET
+BT /F3 7.5 Tf 60.00 558.00 Td (`RAIL_B_1V8`     | rises after about 2 ms  ) Tj ET
+BT /F3 7.5 Tf 60.00 548.00 Td (`RAIL_C_3V3`     | rises after about 4 ms  ) Tj ET
+BT /F3 7.5 Tf 60.00 538.00 Td (`EN_A`           | turns on at 0 ms        ) Tj ET
+BT /F3 7.5 Tf 60.00 528.00 Td (`EN_B`           | turns on at 2 ms        ) Tj ET
+BT /F3 7.5 Tf 60.00 518.00 Td (`EN_C`           | turns on at 4 ms        ) Tj ET
+BT /F3 7.5 Tf 60.00 508.00 Td (`I\(IC_LOADSTEP\)` | active around 8 ms to 12) Tj ET
+BT /F2 11 Tf 54.00 487.00 Td (9.7 Measurement Directives) Tj ET
+BT /F1 10 Tf 54.00 463.00 Td (The simulation includes:) Tj ET
+BT /F3 8 Tf 72.00 438.00 Td (.meas tran RailA_90pct_time WHEN V\(RAIL_A_1V2\)=1.08 RISE=1) Tj ET
+BT /F3 8 Tf 72.00 427.00 Td (.meas tran RailB_90pct_time WHEN V\(RAIL_B_1V8\)=1.62 RISE=1) Tj ET
+BT /F3 8 Tf 72.00 416.00 Td (.meas tran RailC_90pct_time WHEN V\(RAIL_C_3V3\)=2.97 RISE=1) Tj ET
+BT /F3 8 Tf 72.00 405.00 Td (.meas tran RailC_pre_step_avg AVG V\(RAIL_C_3V3\) FROM=7m TO=7.8m) Tj ET
+BT /F3 8 Tf 72.00 394.00 Td (.meas tran RailC_load_step_min MIN V\(RAIL_C_3V3\) FROM=8m TO=9m) Tj ET
+BT /F3 8 Tf 72.00 383.00 Td (.meas tran RailC_recovered_avg AVG V\(RAIL_C_3V3\) FROM=9m TO=12m) Tj ET
+BT /F1 10 Tf 54.00 361.00 Td (These measure:) Tj ET
+BT /F1 10 Tf 72.00 338.00 Td (- when each rail reaches 90% of nominal,) Tj ET
+BT /F1 10 Tf 72.00 321.00 Td (- Rail C voltage before the transient,) Tj ET
+BT /F1 10 Tf 72.00 304.00 Td (- Rail C minimum voltage during the load step,) Tj ET
+BT /F1 10 Tf 72.00 287.00 Td (- Rail C recovered average voltage after the step.) Tj ET
+BT /F2 11 Tf 54.00 264.00 Td (9.8 Acceptance Criteria) Tj ET
+BT /F1 10 Tf 54.00 240.00 Td (For this project:) Tj ET
+BT /F1 10 Tf 72.00 217.00 Td (- Rail A should reach 90% before Rail B begins.) Tj ET
+BT /F1 10 Tf 72.00 200.00 Td (- Rail B should reach 90% before Rail C begins.) Tj ET
+BT /F1 10 Tf 72.00 183.00 Td (- Rail C should show controlled droop during the load step.) Tj ET
+BT /F1 10 Tf 72.00 166.00 Td (- The simulation should be readable and repeatable.) Tj ET
+BT /F1 10 Tf 54.00 143.00 Td (For a production design, acceptance criteria would also include:) Tj ET
+BT /F1 10 Tf 72.00 120.00 Td (- ripple voltage limit,) Tj ET
+BT /F1 10 Tf 72.00 103.00 Td (- transient recovery time,) Tj ET
+BT /F1 10 Tf 72.00 86.00 Td (- overshoot limit,) Tj ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 18 0 R >>
+endobj
+20 0 obj
+<< /Length 2844 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 536.60 24.00 Td (9) Tj ET
+BT /F1 10 Tf 72.00 772.00 Td (- power-up monotonicity,) Tj ET
+BT /F1 10 Tf 72.00 755.00 Td (- thermal limit,) Tj ET
+BT /F1 10 Tf 72.00 738.00 Td (- efficiency target,) Tj ET
+BT /F1 10 Tf 72.00 721.00 Td (- EMI target.) Tj ET
+BT /F2 14 Tf 54.00 690.00 Td (10. KiCad Schematic Design) Tj ET
+BT /F2 11 Tf 54.00 661.00 Td (10.1 Main Files) Tj ET
+BT /F3 8 Tf 72.00 635.00 Td (kicad/PowerRailsBoard_KiCad/PowerRailsBoard.kicad_pro) Tj ET
+BT /F3 8 Tf 72.00 624.00 Td (kicad/PowerRailsBoard_KiCad/PowerRailsBoard.kicad_sch) Tj ET
+BT /F2 11 Tf 54.00 602.00 Td (10.2 Exported Files) Tj ET
+BT /F3 8 Tf 72.00 576.00 Td (kicad/PowerRailsBoard_KiCad/PowerRailsBoard_schematic.pdf) Tj ET
+BT /F3 8 Tf 72.00 565.00 Td (kicad/PowerRailsBoard_KiCad/PowerRailsBoard.svg.png) Tj ET
+BT /F3 8 Tf 72.00 554.00 Td (kicad/PowerRailsBoard_KiCad/PowerRailsBoard.net) Tj ET
+BT /F3 8 Tf 72.00 543.00 Td (kicad/PowerRailsBoard_KiCad/PowerRailsBoard_BOM_from_KiCad.csv) Tj ET
+BT /F3 8 Tf 72.00 532.00 Td (kicad/PowerRailsBoard_KiCad/ERC_report.txt) Tj ET
+BT /F2 11 Tf 54.00 510.00 Td (10.3 ERC Result) Tj ET
+BT /F1 10 Tf 54.00 486.00 Td (KiCad ERC result:) Tj ET
+BT /F3 8 Tf 72.00 461.00 Td (0 errors, 0 warnings) Tj ET
+BT /F1 10 Tf 54.00 439.00 Td (This means the schematic has no KiCad-detected electrical rule problems in the current) Tj ET
+BT /F1 10 Tf 54.00 425.00 Td (schematic-level representation.) Tj ET
+BT /F2 11 Tf 54.00 402.00 Td (10.4 What The KiCad Schematic Contains) Tj ET
+BT /F1 10 Tf 54.00 378.00 Td (The KiCad schematic includes:) Tj ET
+BT /F1 10 Tf 72.00 355.00 Td (- input connector,) Tj ET
+BT /F1 10 Tf 72.00 338.00 Td (- input reverse-polarity diode,) Tj ET
+BT /F1 10 Tf 72.00 321.00 Td (- input capacitor,) Tj ET
+BT /F1 10 Tf 72.00 304.00 Td (- regulator blocks,) Tj ET
+BT /F1 10 Tf 72.00 287.00 Td (- output capacitors,) Tj ET
+BT /F1 10 Tf 72.00 270.00 Td (- load resistors,) Tj ET
+BT /F1 10 Tf 72.00 253.00 Td (- Rail C P-MOSFET load switch,) Tj ET
+BT /F1 10 Tf 72.00 236.00 Td (- feedback divider representation,) Tj ET
+BT /F1 10 Tf 72.00 219.00 Td (- enable sequencing RC networks,) Tj ET
+BT /F1 10 Tf 72.00 202.00 Td (- test points,) Tj ET
+BT /F1 10 Tf 72.00 185.00 Td (- net labels,) Tj ET
+BT /F1 10 Tf 72.00 168.00 Td (- title notes.) Tj ET
+BT /F2 11 Tf 54.00 145.00 Td (10.5 Why Custom Symbols Were Used) Tj ET
+BT /F1 10 Tf 54.00 121.00 Td (The schematic uses custom local symbols in `RailProject.kicad_sym`. This reduces) Tj ET
+BT /F1 10 Tf 54.00 107.00 Td (dependency issues. The schematic opens cleanly because it does not rely on missing) Tj ET
+BT /F1 10 Tf 54.00 93.00 Td (external symbol libraries.) Tj ET
+BT /F1 10 Tf 54.00 70.00 Td (For a production schematic, the next step would be to replace simplified local regulator) Tj ET
+endstream
+endobj
+21 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 20 0 R >>
+endobj
+22 0 obj
+<< /Length 3397 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (10) Tj ET
+BT /F1 10 Tf 54.00 772.00 Td (blocks with official manufacturer symbols and confirmed footprints.) Tj ET
+BT /F2 14 Tf 54.00 741.00 Td (11. BOM Summary) Tj ET
+BT /F1 10 Tf 54.00 712.00 Td (The BOM contains the main components:) Tj ET
+BT /F3 7.5 Tf 60.00 689.00 Td (Ref         | Part             | Purpose                 ) Tj ET
+BT /F3 7.5 Tf 60.00 679.00 Td (------------+------------------+-------------------------) Tj ET
+BT /F3 7.5 Tf 60.00 669.00 Td (U1          | TPS62203         | 3.3 V buck reference    ) Tj ET
+BT /F3 7.5 Tf 60.00 659.00 Td (U2          | TPS62240         | 1.8 V buck reference    ) Tj ET
+BT /F3 7.5 Tf 60.00 649.00 Td (U3          | TLV70012         | 1.2 V LDO reference     ) Tj ET
+BT /F3 7.5 Tf 60.00 639.00 Td (Q1          | AO3401           | P-MOSFET Rail C load swi) Tj ET
+BT /F3 7.5 Tf 60.00 629.00 Td (D1          | SS34             | reverse-polarity protect) Tj ET
+BT /F3 7.5 Tf 60.00 619.00 Td (C_IN        | 10 uF X7R        | input capacitor         ) Tj ET
+BT /F3 7.5 Tf 60.00 609.00 Td (C_OUT_A/B/C | 22 uF X7R        | output capacitors       ) Tj ET
+BT /F3 7.5 Tf 60.00 599.00 Td (R_LOAD_A    | 2.4 ohm          | Rail A load             ) Tj ET
+BT /F3 7.5 Tf 60.00 589.00 Td (R_LOAD_B    | 3.0 ohm          | Rail B load             ) Tj ET
+BT /F3 7.5 Tf 60.00 579.00 Td (R_LOAD_C    | 4.125 ohm/pulsed | Rail C load representati) Tj ET
+BT /F2 14 Tf 54.00 550.00 Td (12. Important Engineering Caveats) Tj ET
+BT /F2 11 Tf 54.00 521.00 Td (12.1 Regulator Current Rating) Tj ET
+BT /F1 10 Tf 54.00 497.00 Td (The most important caveat is that the named parts must be checked against current) Tj ET
+BT /F1 10 Tf 54.00 483.00 Td (requirements before fabrication. Model availability does not equal design suitability.) Tj ET
+BT /F1 10 Tf 54.00 460.00 Td (A stronger production design would select regulators with:) Tj ET
+BT /F1 10 Tf 72.00 437.00 Td (- rated output current above the maximum load,) Tj ET
+BT /F1 10 Tf 72.00 420.00 Td (- thermal margin,) Tj ET
+BT /F1 10 Tf 72.00 403.00 Td (- acceptable efficiency,) Tj ET
+BT /F1 10 Tf 72.00 386.00 Td (- available package and footprint,) Tj ET
+BT /F1 10 Tf 72.00 369.00 Td (- datasheet-supported inductor/capacitor values,) Tj ET
+BT /F1 10 Tf 72.00 352.00 Td (- stable control loop over expected load.) Tj ET
+BT /F2 11 Tf 54.00 329.00 Td (12.2 LDO Thermal Dissipation) Tj ET
+BT /F1 10 Tf 54.00 305.00 Td (If a 1.2 V rail is generated from 5 V using an LDO at 500 mA:) Tj ET
+BT /F3 8 Tf 72.00 280.00 Td (P = \(Vin - Vout\) * I) Tj ET
+BT /F3 8 Tf 72.00 269.00 Td (P = \(5 V - 1.2 V\) * 0.5 A) Tj ET
+BT /F3 8 Tf 72.00 258.00 Td (P = 1.9 W) Tj ET
+BT /F1 10 Tf 54.00 236.00 Td (That is too high for many small packages. A real board would likely use a buck converter) Tj ET
+BT /F1 10 Tf 54.00 222.00 Td (for 1.2 V or a two-stage approach.) Tj ET
+BT /F2 11 Tf 54.00 199.00 Td (12.3 Behavioral Simulation Limits) Tj ET
+BT /F1 10 Tf 54.00 175.00 Td (The behavioral LTspice model does not show:) Tj ET
+BT /F1 10 Tf 72.00 152.00 Td (- switching ripple,) Tj ET
+BT /F1 10 Tf 72.00 135.00 Td (- inductor current ripple,) Tj ET
+BT /F1 10 Tf 72.00 118.00 Td (- compensation loop behavior,) Tj ET
+BT /F1 10 Tf 72.00 101.00 Td (- switch-node ringing,) Tj ET
+BT /F1 10 Tf 72.00 84.00 Td (- layout parasitics,) Tj ET
+endstream
+endobj
+23 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 22 0 R >>
+endobj
+24 0 obj
+<< /Length 2767 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (11) Tj ET
+BT /F1 10 Tf 72.00 772.00 Td (- EMI,) Tj ET
+BT /F1 10 Tf 72.00 755.00 Td (- real startup soft-start details,) Tj ET
+BT /F1 10 Tf 72.00 738.00 Td (- regulator current limiting.) Tj ET
+BT /F1 10 Tf 54.00 715.00 Td (It is still valuable because it validates architecture and timing.) Tj ET
+BT /F2 11 Tf 54.00 692.00 Td (12.4 RC Sequencing Tolerance) Tj ET
+BT /F1 10 Tf 54.00 668.00 Td (RC delays are approximate. Real delays vary due to:) Tj ET
+BT /F1 10 Tf 72.00 645.00 Td (- resistor tolerance,) Tj ET
+BT /F1 10 Tf 72.00 628.00 Td (- capacitor tolerance,) Tj ET
+BT /F1 10 Tf 72.00 611.00 Td (- capacitor leakage,) Tj ET
+BT /F1 10 Tf 72.00 594.00 Td (- temperature,) Tj ET
+BT /F1 10 Tf 72.00 577.00 Td (- enable threshold variation,) Tj ET
+BT /F1 10 Tf 72.00 560.00 Td (- input ramp rate.) Tj ET
+BT /F1 10 Tf 54.00 537.00 Td (For production, a sequencer IC is more reliable.) Tj ET
+BT /F2 14 Tf 54.00 506.00 Td (13. PCB Layout Considerations) Tj ET
+BT /F1 10 Tf 54.00 477.00 Td (If this schematic is moved to PCB layout, key rules are:) Tj ET
+BT /F1 10 Tf 68.00 454.00 Td (1. Place input capacitors close to regulator VIN and GND pins.) Tj ET
+BT /F1 10 Tf 68.00 437.00 Td (2. Keep high-current loops short.) Tj ET
+BT /F1 10 Tf 68.00 420.00 Td (3. Keep buck switch nodes small.) Tj ET
+BT /F1 10 Tf 68.00 403.00 Td (4. Route feedback traces away from switch nodes.) Tj ET
+BT /F1 10 Tf 68.00 386.00 Td (5. Use a solid ground plane.) Tj ET
+BT /F1 10 Tf 68.00 369.00 Td (6. Use wide traces or pours for high-current rails.) Tj ET
+BT /F1 10 Tf 68.00 352.00 Td (7. Place output capacitors close to regulator outputs.) Tj ET
+BT /F1 10 Tf 68.00 335.00 Td (8. Keep analog/sensitive nodes away from noisy switching paths.) Tj ET
+BT /F1 10 Tf 68.00 318.00 Td (9. Add thermal copper for regulators and diode.) Tj ET
+BT /F1 10 Tf 68.00 301.00 Td (10. Keep test points accessible.) Tj ET
+BT /F1 10 Tf 54.00 278.00 Td (For a two-layer board, layout is possible but harder. For a cleaner power design, a) Tj ET
+BT /F1 10 Tf 54.00 264.00 Td (four-layer board with solid ground and power planes is preferable.) Tj ET
+BT /F2 14 Tf 54.00 233.00 Td (14. Bring-Up Plan) Tj ET
+BT /F2 11 Tf 54.00 204.00 Td (14.1 Before Power-On) Tj ET
+BT /F1 10 Tf 54.00 180.00 Td (Check:) Tj ET
+BT /F1 10 Tf 72.00 157.00 Td (- visual inspection,) Tj ET
+BT /F1 10 Tf 72.00 140.00 Td (- diode orientation,) Tj ET
+BT /F1 10 Tf 72.00 123.00 Td (- capacitor polarity if any polarized parts exist,) Tj ET
+BT /F1 10 Tf 72.00 106.00 Td (- regulator pinout,) Tj ET
+BT /F1 10 Tf 72.00 89.00 Td (- shorts between each rail and ground,) Tj ET
+BT /F1 10 Tf 72.00 72.00 Td (- continuity of input and ground,) Tj ET
+endstream
+endobj
+25 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 24 0 R >>
+endobj
+26 0 obj
+<< /Length 3400 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (12) Tj ET
+BT /F1 10 Tf 72.00 772.00 Td (- correct component values.) Tj ET
+BT /F2 11 Tf 54.00 749.00 Td (14.2 First Power-On) Tj ET
+BT /F1 10 Tf 54.00 725.00 Td (Use:) Tj ET
+BT /F1 10 Tf 72.00 702.00 Td (- current-limited bench supply,) Tj ET
+BT /F1 10 Tf 72.00 685.00 Td (- low current limit at first,) Tj ET
+BT /F1 10 Tf 72.00 668.00 Td (- oscilloscope on rail test points,) Tj ET
+BT /F1 10 Tf 72.00 651.00 Td (- multimeter for steady-state checks.) Tj ET
+BT /F1 10 Tf 54.00 628.00 Td (Procedure:) Tj ET
+BT /F1 10 Tf 68.00 605.00 Td (1. Apply 5 V with low current limit.) Tj ET
+BT /F1 10 Tf 68.00 588.00 Td (2. Confirm no excessive current.) Tj ET
+BT /F1 10 Tf 68.00 571.00 Td (3. Measure `VIN_5V`.) Tj ET
+BT /F1 10 Tf 68.00 554.00 Td (4. Probe `EN_A`, `EN_B`, `EN_C`.) Tj ET
+BT /F1 10 Tf 68.00 537.00 Td (5. Probe `RAIL_A_1V2`, `RAIL_B_1V8`, `RAIL_C_3V3`.) Tj ET
+BT /F1 10 Tf 68.00 520.00 Td (6. Confirm order and final voltages.) Tj ET
+BT /F1 10 Tf 68.00 503.00 Td (7. Increase load slowly.) Tj ET
+BT /F1 10 Tf 68.00 486.00 Td (8. Test Rail C load transient.) Tj ET
+BT /F2 11 Tf 54.00 463.00 Td (14.3 Measurements To Capture) Tj ET
+BT /F1 10 Tf 54.00 439.00 Td (Capture:) Tj ET
+BT /F1 10 Tf 72.00 416.00 Td (- startup sequence waveform,) Tj ET
+BT /F1 10 Tf 72.00 399.00 Td (- rise time of each rail,) Tj ET
+BT /F1 10 Tf 72.00 382.00 Td (- final DC voltage,) Tj ET
+BT /F1 10 Tf 72.00 365.00 Td (- load transient droop,) Tj ET
+BT /F1 10 Tf 72.00 348.00 Td (- recovery time,) Tj ET
+BT /F1 10 Tf 72.00 331.00 Td (- ripple,) Tj ET
+BT /F1 10 Tf 72.00 314.00 Td (- regulator temperature.) Tj ET
+BT /F2 14 Tf 54.00 283.00 Td (15. Failure Modes And Debug Strategy) Tj ET
+BT /F3 7.5 Tf 60.00 254.00 Td (Symptom                | Possible Cause           | Debug Step              ) Tj ET
+BT /F3 7.5 Tf 60.00 244.00 Td (-----------------------+--------------------------+-------------------------) Tj ET
+BT /F3 7.5 Tf 60.00 234.00 Td (Rail missing           | regulator disabled, wron | check VIN and EN pin    ) Tj ET
+BT /F3 7.5 Tf 60.00 224.00 Td (Rail low               | overload, wrong feedback | remove load, inspect fee) Tj ET
+BT /F3 7.5 Tf 60.00 214.00 Td (Rail noisy             | poor layout, missing cap | check capacitor placemen) Tj ET
+BT /F3 7.5 Tf 60.00 204.00 Td (Startup wrong order    | RC timing error, thresho | probe enable pins       ) Tj ET
+BT /F3 7.5 Tf 60.00 194.00 Td (Diode hot              | excessive current or hig | measure current and diod) Tj ET
+BT /F3 7.5 Tf 60.00 184.00 Td (Rail C droops too much | insufficient capacitance | increase capacitance or ) Tj ET
+BT /F3 7.5 Tf 60.00 174.00 Td (Board current too high | short, wrong part orient | current-limit and isolat) Tj ET
+BT /F2 14 Tf 54.00 145.00 Td (16. Repository Deliverables) Tj ET
+BT /F3 7.5 Tf 60.00 116.00 Td (Path                     | Purpose                 ) Tj ET
+BT /F3 7.5 Tf 60.00 106.00 Td (-------------------------+-------------------------) Tj ET
+BT /F3 7.5 Tf 60.00 96.00 Td (`README.md`              | GitHub landing page     ) Tj ET
+BT /F3 7.5 Tf 60.00 86.00 Td (`ltspice/PowerRails_Beha | main LTspice visual simu) Tj ET
+BT /F3 7.5 Tf 60.00 76.00 Td (`ltspice/PowerRails_Beha | companion netlist       ) Tj ET
+BT /F3 7.5 Tf 60.00 66.00 Td (`ltspice/PowerRails_REAL | real-model starter schem) Tj ET
+endstream
+endobj
+27 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 26 0 R >>
+endobj
+28 0 obj
+<< /Length 3703 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (13) Tj ET
+BT /F3 7.5 Tf 60.00 772.00 Td (`ltspice/*.asy`          | LTspice symbols         ) Tj ET
+BT /F3 7.5 Tf 60.00 762.00 Td (`ltspice/*.lib`          | LTspice model libraries ) Tj ET
+BT /F3 7.5 Tf 60.00 752.00 Td (`kicad/PowerRailsBoard_K | KiCad project           ) Tj ET
+BT /F3 7.5 Tf 60.00 742.00 Td (`kicad/PowerRailsBoard_K | KiCad schematic         ) Tj ET
+BT /F3 7.5 Tf 60.00 732.00 Td (`kicad/PowerRailsBoard_K | ERC validation          ) Tj ET
+BT /F3 7.5 Tf 60.00 722.00 Td (`kicad/PowerRailsBoard_K | schematic PDF export    ) Tj ET
+BT /F3 7.5 Tf 60.00 712.00 Td (`kicad/PowerRailsBoard_K | KiCad BOM export        ) Tj ET
+BT /F3 7.5 Tf 60.00 702.00 Td (`bom/PowerRails_BOM.csv` | project-level BOM       ) Tj ET
+BT /F3 7.5 Tf 60.00 692.00 Td (`results/PowerRails_Sequ | sequencing simulation pl) Tj ET
+BT /F3 7.5 Tf 60.00 682.00 Td (`results/RailC_Load_Tran | load transient plot     ) Tj ET
+BT /F3 7.5 Tf 60.00 672.00 Td (`docs/Exhaustive_Project | detailed project report ) Tj ET
+BT /F3 7.5 Tf 60.00 662.00 Td (`docs/Comprehensive_Inte | interview preparation ba) Tj ET
+BT /F2 14 Tf 54.00 633.00 Td (17. What This Project Demonstrates) Tj ET
+BT /F1 10 Tf 54.00 604.00 Td (This project demonstrates:) Tj ET
+BT /F1 10 Tf 72.00 581.00 Td (- power rail planning,) Tj ET
+BT /F1 10 Tf 72.00 564.00 Td (- rail sequencing,) Tj ET
+BT /F1 10 Tf 72.00 547.00 Td (- load calculation,) Tj ET
+BT /F1 10 Tf 72.00 530.00 Td (- transient simulation,) Tj ET
+BT /F1 10 Tf 72.00 513.00 Td (- behavioral modeling,) Tj ET
+BT /F1 10 Tf 72.00 496.00 Td (- schematic organization,) Tj ET
+BT /F1 10 Tf 72.00 479.00 Td (- BOM creation,) Tj ET
+BT /F1 10 Tf 72.00 462.00 Td (- ERC checking,) Tj ET
+BT /F1 10 Tf 72.00 445.00 Td (- test point planning,) Tj ET
+BT /F1 10 Tf 72.00 428.00 Td (- awareness of real-world limitations,) Tj ET
+BT /F1 10 Tf 72.00 411.00 Td (- ability to communicate an engineering design.) Tj ET
+BT /F1 10 Tf 54.00 388.00 Td (The strongest interview point is that the project does not blindly claim perfection. It) Tj ET
+BT /F1 10 Tf 54.00 374.00 Td (clearly separates:) Tj ET
+BT /F1 10 Tf 72.00 351.00 Td (- what is proven by the behavioral simulation,) Tj ET
+BT /F1 10 Tf 72.00 334.00 Td (- what is represented by the KiCad schematic,) Tj ET
+BT /F1 10 Tf 72.00 317.00 Td (- what must still be checked before fabrication.) Tj ET
+BT /F1 10 Tf 54.00 294.00 Td (That is how a competent engineer presents a design.) Tj ET
+BT /F2 14 Tf 54.00 263.00 Td (18. Short Interview Summary) Tj ET
+BT /F1 10 Tf 54.00 234.00 Td (This project is a multi-rail power management block for an SoC and sensor cluster. It) Tj ET
+BT /F1 10 Tf 54.00 220.00 Td (takes a 5 V input and creates 1.2 V, 1.8 V, and 3.3 V rails. The rails are sequenced so) Tj ET
+BT /F1 10 Tf 54.00 206.00 Td (the core rail turns on first, then I/O, then sensors. I simulated the startup sequence) Tj ET
+BT /F1 10 Tf 54.00 192.00 Td (and a 3.3 V load transient in LTspice, captured an ERC-clean schematic in KiCad,) Tj ET
+BT /F1 10 Tf 54.00 178.00 Td (included input protection, enable delay networks, output capacitors, loads, and test) Tj ET
+BT /F1 10 Tf 54.00 164.00 Td (points, and documented the design limitations. The next production step would be) Tj ET
+BT /F1 10 Tf 54.00 150.00 Td (replacing the learning-model regulator choices with current-rated regulators, assigning) Tj ET
+BT /F1 10 Tf 54.00 136.00 Td (final footprints, doing PCB layout, and validating sequencing, ripple, transient) Tj ET
+BT /F1 10 Tf 54.00 122.00 Td (response, and temperature on the bench.) Tj ET
+BT /F2 14 Tf 54.00 91.00 Td (19. Final Conclusion) Tj ET
+endstream
+endobj
+29 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 28 0 R >>
+endobj
+30 0 obj
+<< /Length 1037 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (14) Tj ET
+BT /F1 10 Tf 54.00 772.00 Td (The project successfully shows a complete power-management design workflow. It is not) Tj ET
+BT /F1 10 Tf 54.00 758.00 Td (just a schematic; it includes requirements, architecture, simulation, schematic capture,) Tj ET
+BT /F1 10 Tf 54.00 744.00 Td (validation exports, documentation, and interview preparation.) Tj ET
+BT /F1 10 Tf 54.00 721.00 Td (The design is appropriate as a university-level hardware portfolio project. It shows) Tj ET
+BT /F1 10 Tf 54.00 707.00 Td (practical understanding of power sequencing, regulator selection tradeoffs, transient) Tj ET
+BT /F1 10 Tf 54.00 693.00 Td (behavior, and bring-up planning. The final design should not be fabricated without) Tj ET
+BT /F1 10 Tf 54.00 679.00 Td (regulator current-rating review and thermal analysis, but as an interview project it is) Tj ET
+BT /F1 10 Tf 54.00 665.00 Td (technically defensible, well-scoped, and explainable.) Tj ET
+endstream
+endobj
+31 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 30 0 R >>
+endobj
+32 0 obj
+<< /Length 3013 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (15) Tj ET
+BT /F2 18 Tf 54.00 762.00 Td (Comprehensive Interview Questions And Answers) Tj ET
+BT /F1 10 Tf 54.00 727.00 Td (Project: Multi-Rail Power Management Board) Tj ET
+BT /F1 10 Tf 54.00 710.00 Td (Use case: hardware, embedded systems, power electronics, LTspice, KiCad, bring-up, and) Tj ET
+BT /F1 10 Tf 54.00 696.00 Td (debugging interviews) Tj ET
+BT /F2 14 Tf 54.00 665.00 Td (How To Use This Document) Tj ET
+BT /F1 10 Tf 54.00 636.00 Td (Start with the easy questions until the project story feels natural. Then move to) Tj ET
+BT /F1 10 Tf 54.00 622.00 Td (intermediate and advanced sections. In an interview, do not recite everything. Give a) Tj ET
+BT /F1 10 Tf 54.00 608.00 Td (direct answer first, then expand only if the interviewer asks.) Tj ET
+BT /F2 14 Tf 54.00 577.00 Td (Easy Level: Project Basics) Tj ET
+BT /F2 11 Tf 54.00 548.00 Td (1. What is this project about?) Tj ET
+BT /F1 10 Tf 54.00 524.00 Td (It is a multi-rail power management board. It takes a 5 V input and generates three) Tj ET
+BT /F1 10 Tf 54.00 510.00 Td (sequenced rails: 1.2 V, 1.8 V, and 3.3 V for an SoC plus sensor cluster.) Tj ET
+BT /F2 11 Tf 54.00 487.00 Td (2. Why did you build it?) Tj ET
+BT /F1 10 Tf 54.00 463.00 Td (I built it to demonstrate power-rail planning, sequencing, LTspice simulation, KiCad) Tj ET
+BT /F1 10 Tf 54.00 449.00 Td (schematic capture, BOM creation, and hardware bring-up thinking.) Tj ET
+BT /F2 11 Tf 54.00 426.00 Td (3. What are the output voltages?) Tj ET
+BT /F1 10 Tf 54.00 402.00 Td (The outputs are 1.2 V, 1.8 V, and 3.3 V.) Tj ET
+BT /F2 11 Tf 54.00 379.00 Td (4. What does each rail power?) Tj ET
+BT /F1 10 Tf 54.00 355.00 Td (The 1.2 V rail represents SoC core logic, the 1.8 V rail represents I/O logic, and the) Tj ET
+BT /F1 10 Tf 54.00 341.00 Td (3.3 V rail represents sensors or camera peripherals.) Tj ET
+BT /F2 11 Tf 54.00 318.00 Td (5. What is the input voltage?) Tj ET
+BT /F1 10 Tf 54.00 294.00 Td (The input is a nominal 5 V supply, similar to USB or a bench supply.) Tj ET
+BT /F2 11 Tf 54.00 271.00 Td (6. What is power sequencing?) Tj ET
+BT /F1 10 Tf 54.00 247.00 Td (Power sequencing is turning power rails on and off in a controlled order.) Tj ET
+BT /F2 11 Tf 54.00 224.00 Td (7. What is the startup order?) Tj ET
+BT /F1 10 Tf 54.00 200.00 Td (The 1.2 V core rail starts first, the 1.8 V I/O rail starts second, and the 3.3 V sensor) Tj ET
+BT /F1 10 Tf 54.00 186.00 Td (rail starts third.) Tj ET
+BT /F2 11 Tf 54.00 163.00 Td (8. Why does the core rail start first?) Tj ET
+BT /F1 10 Tf 54.00 139.00 Td (The core logic should be alive before I/O and peripherals are powered. This reduces the) Tj ET
+BT /F1 10 Tf 54.00 125.00 Td (risk of back-powering, undefined logic states, and latch-up.) Tj ET
+BT /F2 11 Tf 54.00 102.00 Td (9. What tools did you use?) Tj ET
+BT /F1 10 Tf 54.00 78.00 Td (I used LTspice for simulation and KiCad for schematic capture and ERC checking.) Tj ET
+endstream
+endobj
+33 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 32 0 R >>
+endobj
+34 0 obj
+<< /Length 3073 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (16) Tj ET
+BT /F2 11 Tf 54.00 772.00 Td (10. What is LTspice used for in this project?) Tj ET
+BT /F1 10 Tf 54.00 748.00 Td (LTspice is used to simulate rail startup timing and the Rail C load transient.) Tj ET
+BT /F2 11 Tf 54.00 725.00 Td (11. What is KiCad used for in this project?) Tj ET
+BT /F1 10 Tf 54.00 701.00 Td (KiCad is used to create the schematic, assign symbols, export a netlist/BOM/PDF, and run) Tj ET
+BT /F1 10 Tf 54.00 687.00 Td (electrical rule checking.) Tj ET
+BT /F2 11 Tf 54.00 664.00 Td (12. What does ERC mean?) Tj ET
+BT /F1 10 Tf 54.00 640.00 Td (ERC means Electrical Rules Check. It checks schematic-level electrical issues such as) Tj ET
+BT /F1 10 Tf 54.00 626.00 Td (unconnected pins, conflicting pin types, and other schematic problems.) Tj ET
+BT /F2 11 Tf 54.00 603.00 Td (13. Did the KiCad schematic pass ERC?) Tj ET
+BT /F1 10 Tf 54.00 579.00 Td (Yes. The exported ERC report shows 0 errors and 0 warnings.) Tj ET
+BT /F2 11 Tf 54.00 556.00 Td (14. What is a regulator?) Tj ET
+BT /F1 10 Tf 54.00 532.00 Td (A regulator converts an input voltage into a stable output voltage.) Tj ET
+BT /F2 11 Tf 54.00 509.00 Td (15. What is an LDO?) Tj ET
+BT /F1 10 Tf 54.00 485.00 Td (An LDO is a low-dropout linear regulator. It is simple and low-noise, but it can waste) Tj ET
+BT /F1 10 Tf 54.00 471.00 Td (power as heat.) Tj ET
+BT /F2 11 Tf 54.00 448.00 Td (16. What is a buck converter?) Tj ET
+BT /F1 10 Tf 54.00 424.00 Td (A buck converter is a switching regulator that efficiently steps a higher voltage down) Tj ET
+BT /F1 10 Tf 54.00 410.00 Td (to a lower voltage.) Tj ET
+BT /F2 11 Tf 54.00 387.00 Td (17. Why use capacitors on the outputs?) Tj ET
+BT /F1 10 Tf 54.00 363.00 Td (Output capacitors reduce ripple and help supply current during fast load changes.) Tj ET
+BT /F2 11 Tf 54.00 340.00 Td (18. What is a test point?) Tj ET
+BT /F1 10 Tf 54.00 316.00 Td (A test point is a probe-accessible node used during measurement and debugging.) Tj ET
+BT /F2 11 Tf 54.00 293.00 Td (19. What is the project's strongest point?) Tj ET
+BT /F1 10 Tf 54.00 269.00 Td (The strongest point is that it shows a complete workflow: requirements, simulation,) Tj ET
+BT /F1 10 Tf 54.00 255.00 Td (schematic, validation reports, BOM, documentation, and interview explanation.) Tj ET
+BT /F2 11 Tf 54.00 232.00 Td (20. What is the simplest way to explain the project?) Tj ET
+BT /F1 10 Tf 54.00 208.00 Td (It is a 5 V input power board that creates three controlled rails for an embedded system) Tj ET
+BT /F1 10 Tf 54.00 194.00 Td (and verifies their startup order in LTspice.) Tj ET
+BT /F2 14 Tf 54.00 163.00 Td (Intermediate Level: Design Choices) Tj ET
+BT /F2 11 Tf 54.00 134.00 Td (21. Why are multiple rails needed in an SoC system?) Tj ET
+BT /F1 10 Tf 54.00 110.00 Td (Different sections of an SoC need different voltages. Core logic often needs a low) Tj ET
+BT /F1 10 Tf 54.00 96.00 Td (voltage like 1.2 V, I/O may need 1.8 V, and external sensors often need 3.3 V.) Tj ET
+endstream
+endobj
+35 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 34 0 R >>
+endobj
+36 0 obj
+<< /Length 3137 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (17) Tj ET
+BT /F2 11 Tf 54.00 772.00 Td (22. Why not power all rails at the same time?) Tj ET
+BT /F1 10 Tf 54.00 748.00 Td (Some ICs require a specific rail order. If I/O powers before the core, current can flow) Tj ET
+BT /F1 10 Tf 54.00 734.00 Td (through protection structures and cause undefined behavior.) Tj ET
+BT /F2 11 Tf 54.00 711.00 Td (23. What is back-powering?) Tj ET
+BT /F1 10 Tf 54.00 687.00 Td (Back-powering happens when an unpowered rail or chip is unintentionally powered through) Tj ET
+BT /F1 10 Tf 54.00 673.00 Td (another signal path, often through I/O protection diodes.) Tj ET
+BT /F2 11 Tf 54.00 650.00 Td (24. What is latch-up?) Tj ET
+BT /F1 10 Tf 54.00 626.00 Td (Latch-up is a destructive condition where parasitic internal structures in an IC conduct) Tj ET
+BT /F1 10 Tf 54.00 612.00 Td (heavily. It can happen due to invalid voltage conditions or injected current.) Tj ET
+BT /F2 11 Tf 54.00 589.00 Td (25. How can bad sequencing cause latch-up?) Tj ET
+BT /F1 10 Tf 54.00 565.00 Td (If I/O pins are powered while the core is off, internal structures may be biased) Tj ET
+BT /F1 10 Tf 54.00 551.00 Td (incorrectly, allowing current paths that should not exist.) Tj ET
+BT /F2 11 Tf 54.00 528.00 Td (26. Why is Rail C turned on last?) Tj ET
+BT /F1 10 Tf 54.00 504.00 Td (Rail C powers sensors/peripherals. These loads should start after the core and I/O are) Tj ET
+BT /F1 10 Tf 54.00 490.00 Td (ready, and they may draw significant transient current.) Tj ET
+BT /F2 11 Tf 54.00 467.00 Td (27. What is a load transient?) Tj ET
+BT /F1 10 Tf 54.00 443.00 Td (A load transient is a sudden change in current demand.) Tj ET
+BT /F2 11 Tf 54.00 420.00 Td (28. Why simulate a Rail C load transient?) Tj ET
+BT /F1 10 Tf 54.00 396.00 Td (Sensors or cameras may suddenly wake up and draw much more current. The simulation) Tj ET
+BT /F1 10 Tf 54.00 382.00 Td (checks whether the 3.3 V rail droops too much.) Tj ET
+BT /F2 11 Tf 54.00 359.00 Td (29. What is the Rail C load step?) Tj ET
+BT /F1 10 Tf 54.00 335.00 Td (Rail C is modeled as stepping from a light load to a heavier active load around 8 ms.) Tj ET
+BT /F2 11 Tf 54.00 312.00 Td (30. How did you calculate load resistance?) Tj ET
+BT /F1 10 Tf 54.00 288.00 Td (I used Ohm's law: `R = V / I`.) Tj ET
+BT /F2 11 Tf 54.00 265.00 Td (31. What is the Rail A load resistance?) Tj ET
+BT /F1 10 Tf 54.00 241.00 Td (For 1.2 V at 0.5 A, `R = 1.2 / 0.5 = 2.4 ohm`.) Tj ET
+BT /F2 11 Tf 54.00 218.00 Td (32. What is the Rail B load resistance?) Tj ET
+BT /F1 10 Tf 54.00 194.00 Td (For 1.8 V at 0.6 A, `R = 1.8 / 0.6 = 3.0 ohm`.) Tj ET
+BT /F2 11 Tf 54.00 171.00 Td (33. What is the Rail C full-load resistance?) Tj ET
+BT /F1 10 Tf 54.00 147.00 Td (For 3.3 V at 0.8 A, `R = 3.3 / 0.8 = 4.125 ohm`.) Tj ET
+BT /F2 11 Tf 54.00 124.00 Td (34. Why is Rail C modeled with a current source?) Tj ET
+BT /F1 10 Tf 54.00 100.00 Td (A current source is better for modeling a dynamic load like a sensor waking up because) Tj ET
+BT /F1 10 Tf 54.00 86.00 Td (the current demand changes with time.) Tj ET
+endstream
+endobj
+37 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 36 0 R >>
+endobj
+38 0 obj
+<< /Length 3069 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (18) Tj ET
+BT /F2 11 Tf 54.00 772.00 Td (35. What does the 22 uF output capacitor do?) Tj ET
+BT /F1 10 Tf 54.00 748.00 Td (It provides local charge, reduces ripple, and helps reduce voltage droop during) Tj ET
+BT /F1 10 Tf 54.00 734.00 Td (transient events.) Tj ET
+BT /F2 11 Tf 54.00 711.00 Td (36. Why use X7R ceramic capacitors?) Tj ET
+BT /F1 10 Tf 54.00 687.00 Td (X7R capacitors have better temperature stability than lower-grade dielectrics and are) Tj ET
+BT /F1 10 Tf 54.00 673.00 Td (common for decoupling.) Tj ET
+BT /F2 11 Tf 54.00 650.00 Td (37. What is ESR?) Tj ET
+BT /F1 10 Tf 54.00 626.00 Td (ESR is equivalent series resistance. It is the effective resistance inside a capacitor) Tj ET
+BT /F1 10 Tf 54.00 612.00 Td (and affects ripple and transient voltage drop.) Tj ET
+BT /F2 11 Tf 54.00 589.00 Td (38. What is ESL?) Tj ET
+BT /F1 10 Tf 54.00 565.00 Td (ESL is equivalent series inductance. It limits how well a capacitor responds at very) Tj ET
+BT /F1 10 Tf 54.00 551.00 Td (high frequencies.) Tj ET
+BT /F2 11 Tf 54.00 528.00 Td (39. Why place capacitors near regulator pins?) Tj ET
+BT /F1 10 Tf 54.00 504.00 Td (Short placement reduces parasitic inductance and resistance, improving transient) Tj ET
+BT /F1 10 Tf 54.00 490.00 Td (response and reducing noise.) Tj ET
+BT /F2 11 Tf 54.00 467.00 Td (40. Why include reverse-polarity protection?) Tj ET
+BT /F1 10 Tf 54.00 443.00 Td (It protects the board if the input supply is connected backwards.) Tj ET
+BT /F2 11 Tf 54.00 420.00 Td (41. What is the downside of a Schottky diode for input protection?) Tj ET
+BT /F1 10 Tf 54.00 396.00 Td (It has a forward voltage drop and dissipates heat.) Tj ET
+BT /F2 11 Tf 54.00 373.00 Td (42. What is a better production reverse-protection method?) Tj ET
+BT /F1 10 Tf 54.00 349.00 Td (A P-MOSFET ideal-diode style circuit or ideal diode controller gives lower voltage drop) Tj ET
+BT /F1 10 Tf 54.00 335.00 Td (and better efficiency.) Tj ET
+BT /F2 11 Tf 54.00 312.00 Td (43. Why include a P-MOSFET load switch?) Tj ET
+BT /F1 10 Tf 54.00 288.00 Td (It allows the sensor rail to be disconnected, sequenced, or power-gated.) Tj ET
+BT /F2 11 Tf 54.00 265.00 Td (44. What does an enable pin do?) Tj ET
+BT /F1 10 Tf 54.00 241.00 Td (An enable pin turns a regulator on or off.) Tj ET
+BT /F2 11 Tf 54.00 218.00 Td (45. How can an RC delay create sequencing?) Tj ET
+BT /F1 10 Tf 54.00 194.00 Td (A resistor charges a capacitor. The regulator enable pin turns on when the capacitor) Tj ET
+BT /F1 10 Tf 54.00 180.00 Td (voltage crosses its threshold.) Tj ET
+BT /F2 11 Tf 54.00 157.00 Td (46. What is the approximate RC delay formula?) Tj ET
+BT /F1 10 Tf 54.00 133.00 Td (For a charging capacitor, `t = -RC ln\(1 - Vth/Vin\)`.) Tj ET
+BT /F2 11 Tf 54.00 110.00 Td (47. Why are RC delays not exact?) Tj ET
+BT /F1 10 Tf 54.00 86.00 Td (They vary with resistor tolerance, capacitor tolerance, leakage, temperature, and enable) Tj ET
+BT /F1 10 Tf 54.00 72.00 Td (threshold variation.) Tj ET
+endstream
+endobj
+39 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 38 0 R >>
+endobj
+40 0 obj
+<< /Length 3016 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (19) Tj ET
+BT /F2 11 Tf 54.00 772.00 Td (48. What is better than RC sequencing for production?) Tj ET
+BT /F1 10 Tf 54.00 748.00 Td (A power sequencer IC, supervisor, PMIC, or microcontroller-controlled enable sequence is) Tj ET
+BT /F1 10 Tf 54.00 734.00 Td (more precise.) Tj ET
+BT /F2 11 Tf 54.00 711.00 Td (49. Why include test points on enable nets?) Tj ET
+BT /F1 10 Tf 54.00 687.00 Td (Enable test points let me verify that the sequence is actually happening at the) Tj ET
+BT /F1 10 Tf 54.00 673.00 Td (regulator control pins.) Tj ET
+BT /F2 11 Tf 54.00 650.00 Td (50. Why include test points on every rail?) Tj ET
+BT /F1 10 Tf 54.00 626.00 Td (They make bring-up and debugging easier because every important voltage can be probed) Tj ET
+BT /F1 10 Tf 54.00 612.00 Td (directly.) Tj ET
+BT /F2 14 Tf 54.00 581.00 Td (Intermediate Level: LTspice And Simulation) Tj ET
+BT /F2 11 Tf 54.00 552.00 Td (51. Why use behavioral sources in LTspice?) Tj ET
+BT /F1 10 Tf 54.00 528.00 Td (Behavioral sources make the architecture easy to simulate without getting blocked by) Tj ET
+BT /F1 10 Tf 54.00 514.00 Td (fragile vendor model setup.) Tj ET
+BT /F2 11 Tf 54.00 491.00 Td (52. Does the behavioral simulation model real switching ripple?) Tj ET
+BT /F1 10 Tf 54.00 467.00 Td (No. It models startup timing and load behavior, but not actual buck switching ripple or) Tj ET
+BT /F1 10 Tf 54.00 453.00 Td (compensation loop details.) Tj ET
+BT /F2 11 Tf 54.00 430.00 Td (53. Why is that acceptable for this stage?) Tj ET
+BT /F1 10 Tf 54.00 406.00 Td (At the architecture stage, the main goal is to verify sequencing and load response) Tj ET
+BT /F1 10 Tf 54.00 392.00 Td (conceptually. Detailed regulator simulation can come later.) Tj ET
+BT /F2 11 Tf 54.00 369.00 Td (54. What does `.tran 20m startup` do?) Tj ET
+BT /F1 10 Tf 54.00 345.00 Td (It runs a transient simulation for 20 ms and starts from initial startup conditions.) Tj ET
+BT /F2 11 Tf 54.00 322.00 Td (55. What signals should be plotted?) Tj ET
+BT /F1 10 Tf 54.00 298.00 Td (Plot the three rail voltages and the three enable signals: `V\(RAIL_A_1V2\)`,) Tj ET
+BT /F1 10 Tf 54.00 284.00 Td (`V\(RAIL_B_1V8\)`, `V\(RAIL_C_3V3\)`, `V\(EN_A\)`, `V\(EN_B\)`, and `V\(EN_C\)`.) Tj ET
+BT /F2 11 Tf 54.00 261.00 Td (56. What do the `.meas` commands do?) Tj ET
+BT /F1 10 Tf 54.00 237.00 Td (They automatically measure rail startup times and Rail C voltage behavior) Tj ET
+BT /F1 10 Tf 54.00 223.00 Td (before/during/after the load step.) Tj ET
+BT /F2 11 Tf 54.00 200.00 Td (57. Why measure 90% rail time?) Tj ET
+BT /F1 10 Tf 54.00 176.00 Td (90% of nominal is a common practical threshold for determining when a rail is mostly up.) Tj ET
+BT /F2 11 Tf 54.00 153.00 Td (58. What is 90% of 1.2 V?) Tj ET
+BT /F1 10 Tf 54.00 129.00 Td (`0.9 * 1.2 = 1.08 V`.) Tj ET
+BT /F2 11 Tf 54.00 106.00 Td (59. What is 90% of 1.8 V?) Tj ET
+BT /F1 10 Tf 54.00 82.00 Td (`0.9 * 1.8 = 1.62 V`.) Tj ET
+endstream
+endobj
+41 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 40 0 R >>
+endobj
+42 0 obj
+<< /Length 3237 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (20) Tj ET
+BT /F2 11 Tf 54.00 772.00 Td (60. What is 90% of 3.3 V?) Tj ET
+BT /F1 10 Tf 54.00 748.00 Td (`0.9 * 3.3 = 2.97 V`.) Tj ET
+BT /F2 11 Tf 54.00 725.00 Td (61. Why did you move long formulas into `.func` directives?) Tj ET
+BT /F1 10 Tf 54.00 701.00 Td (To keep the LTspice schematic visually clean. The source values stay short, while the) Tj ET
+BT /F1 10 Tf 54.00 687.00 Td (detailed equations live in a directive block.) Tj ET
+BT /F2 11 Tf 54.00 664.00 Td (62. What is the purpose of `V=RA\(time\)`?) Tj ET
+BT /F1 10 Tf 54.00 640.00 Td (It tells the behavioral source to output the Rail A voltage according to the `RA\(t\)`) Tj ET
+BT /F1 10 Tf 54.00 626.00 Td (function.) Tj ET
+BT /F2 11 Tf 54.00 603.00 Td (63. Why are enable signals included as separate sources?) Tj ET
+BT /F1 10 Tf 54.00 579.00 Td (They make the intended sequence visible in the waveform plot.) Tj ET
+BT /F2 11 Tf 54.00 556.00 Td (64. How would you improve the simulation for production?) Tj ET
+BT /F1 10 Tf 54.00 532.00 Td (Use verified manufacturer models, include inductors and feedback components, model input) Tj ET
+BT /F1 10 Tf 54.00 518.00 Td (supply ramp, include ESR/ESL, and run corner cases.) Tj ET
+BT /F2 11 Tf 54.00 495.00 Td (65. What corner cases would you simulate?) Tj ET
+BT /F1 10 Tf 54.00 471.00 Td (Minimum/maximum input voltage, light/full load, startup into load, output short) Tj ET
+BT /F1 10 Tf 54.00 457.00 Td (behavior, temperature extremes, capacitor tolerance, and sequencing tolerance.) Tj ET
+BT /F2 14 Tf 54.00 426.00 Td (Advanced Level: Regulator And Power Electronics) Tj ET
+BT /F2 11 Tf 54.00 397.00 Td (66. Why might an LDO from 5 V to 1.2 V be thermally bad?) Tj ET
+BT /F1 10 Tf 54.00 373.00 Td (The power loss is `\(5 - 1.2\) * 0.5 = 1.9 W`, which is too high for many small packages.) Tj ET
+BT /F2 11 Tf 54.00 350.00 Td (67. What would you use instead for high-current 1.2 V?) Tj ET
+BT /F1 10 Tf 54.00 326.00 Td (I would use a buck converter, possibly followed by a low-noise LDO if the rail needs) Tj ET
+BT /F1 10 Tf 54.00 312.00 Td (extra filtering.) Tj ET
+BT /F2 11 Tf 54.00 289.00 Td (68. What is buck converter efficiency?) Tj ET
+BT /F1 10 Tf 54.00 265.00 Td (Efficiency is output power divided by input power. A buck converter is usually much more) Tj ET
+BT /F1 10 Tf 54.00 251.00 Td (efficient than an LDO for high voltage drop and high current.) Tj ET
+BT /F2 11 Tf 54.00 228.00 Td (69. What is the purpose of the inductor in a buck converter?) Tj ET
+BT /F1 10 Tf 54.00 204.00 Td (The inductor stores and releases energy each switching cycle, smoothing current and) Tj ET
+BT /F1 10 Tf 54.00 190.00 Td (enabling efficient voltage conversion.) Tj ET
+BT /F2 11 Tf 54.00 167.00 Td (70. What happens if the inductor is too small?) Tj ET
+BT /F1 10 Tf 54.00 143.00 Td (Ripple current increases, which can increase ripple, losses, current stress, and) Tj ET
+BT /F1 10 Tf 54.00 129.00 Td (possibly instability.) Tj ET
+BT /F2 11 Tf 54.00 106.00 Td (71. What happens if the inductor is too large?) Tj ET
+BT /F1 10 Tf 54.00 82.00 Td (Transient response can become slower, size and cost increase, and the regulator may not) Tj ET
+endstream
+endobj
+43 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 42 0 R >>
+endobj
+44 0 obj
+<< /Length 3002 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (21) Tj ET
+BT /F1 10 Tf 54.00 772.00 Td (operate optimally.) Tj ET
+BT /F2 11 Tf 54.00 749.00 Td (72. What is switch-node ringing?) Tj ET
+BT /F1 10 Tf 54.00 725.00 Td (It is high-frequency oscillation at the switching node caused by parasitic inductance) Tj ET
+BT /F1 10 Tf 54.00 711.00 Td (and capacitance.) Tj ET
+BT /F2 11 Tf 54.00 688.00 Td (73. Why is the switch node noisy?) Tj ET
+BT /F1 10 Tf 54.00 664.00 Td (It has fast voltage transitions and high di/dt current loops.) Tj ET
+BT /F2 11 Tf 54.00 641.00 Td (74. How do you reduce switch-node noise?) Tj ET
+BT /F1 10 Tf 54.00 617.00 Td (Keep the switch node copper small, minimize loop area, use good grounding, and follow) Tj ET
+BT /F1 10 Tf 54.00 603.00 Td (datasheet layout recommendations.) Tj ET
+BT /F2 11 Tf 54.00 580.00 Td (75. What is loop compensation?) Tj ET
+BT /F1 10 Tf 54.00 556.00 Td (Loop compensation shapes the regulator feedback loop so the output remains stable over) Tj ET
+BT /F1 10 Tf 54.00 542.00 Td (load, capacitor, and input conditions.) Tj ET
+BT /F2 11 Tf 54.00 519.00 Td (76. What affects regulator stability?) Tj ET
+BT /F1 10 Tf 54.00 495.00 Td (Output capacitor value, ESR, inductor value, feedback network, load range, internal) Tj ET
+BT /F1 10 Tf 54.00 481.00 Td (compensation, and layout parasitics.) Tj ET
+BT /F2 11 Tf 54.00 458.00 Td (77. What is load regulation?) Tj ET
+BT /F1 10 Tf 54.00 434.00 Td (Load regulation describes how much output voltage changes as load current changes.) Tj ET
+BT /F2 11 Tf 54.00 411.00 Td (78. What is line regulation?) Tj ET
+BT /F1 10 Tf 54.00 387.00 Td (Line regulation describes how much output voltage changes as input voltage changes.) Tj ET
+BT /F2 11 Tf 54.00 364.00 Td (79. What is dropout voltage?) Tj ET
+BT /F1 10 Tf 54.00 340.00 Td (Dropout voltage is the minimum voltage difference required between input and output for) Tj ET
+BT /F1 10 Tf 54.00 326.00 Td (an LDO to regulate correctly.) Tj ET
+BT /F2 11 Tf 54.00 303.00 Td (80. What is quiescent current?) Tj ET
+BT /F1 10 Tf 54.00 279.00 Td (Quiescent current is the current consumed by the regulator itself to operate.) Tj ET
+BT /F2 11 Tf 54.00 256.00 Td (81. What is soft-start?) Tj ET
+BT /F1 10 Tf 54.00 232.00 Td (Soft-start controls how quickly a regulator output rises, reducing inrush current and) Tj ET
+BT /F1 10 Tf 54.00 218.00 Td (overshoot.) Tj ET
+BT /F2 11 Tf 54.00 195.00 Td (82. Why does startup inrush matter?) Tj ET
+BT /F1 10 Tf 54.00 171.00 Td (Large inrush current can trip the supply, stress components, or pull down other rails.) Tj ET
+BT /F2 11 Tf 54.00 148.00 Td (83. What is output ripple?) Tj ET
+BT /F1 10 Tf 54.00 124.00 Td (Output ripple is AC variation on top of the DC output voltage.) Tj ET
+BT /F2 11 Tf 54.00 101.00 Td (84. How would you measure ripple correctly?) Tj ET
+BT /F1 10 Tf 54.00 77.00 Td (Use an oscilloscope with short ground spring or coax method, proper bandwidth limit if) Tj ET
+endstream
+endobj
+45 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 44 0 R >>
+endobj
+46 0 obj
+<< /Length 2857 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (22) Tj ET
+BT /F1 10 Tf 54.00 772.00 Td (needed, and probe close to the capacitor.) Tj ET
+BT /F2 11 Tf 54.00 749.00 Td (85. Why is probing technique important?) Tj ET
+BT /F1 10 Tf 54.00 725.00 Td (A long probe ground lead adds inductance and can show false ringing/noise.) Tj ET
+BT /F2 11 Tf 54.00 702.00 Td (86. What is a power-good signal?) Tj ET
+BT /F1 10 Tf 54.00 678.00 Td (Power-good indicates that a regulator output is within a valid range. It can be used to) Tj ET
+BT /F1 10 Tf 54.00 664.00 Td (enable the next rail.) Tj ET
+BT /F2 11 Tf 54.00 641.00 Td (87. Why is power-good chaining better than fixed RC delay?) Tj ET
+BT /F1 10 Tf 54.00 617.00 Td (It waits for the previous rail to actually be valid instead of only waiting a fixed) Tj ET
+BT /F1 10 Tf 54.00 603.00 Td (time.) Tj ET
+BT /F2 11 Tf 54.00 580.00 Td (88. What is UVLO?) Tj ET
+BT /F1 10 Tf 54.00 556.00 Td (UVLO means undervoltage lockout. It prevents operation when input voltage is too low.) Tj ET
+BT /F2 11 Tf 54.00 533.00 Td (89. What is current limit?) Tj ET
+BT /F1 10 Tf 54.00 509.00 Td (Current limit protects the regulator and load by limiting output current during overload) Tj ET
+BT /F1 10 Tf 54.00 495.00 Td (or short circuit.) Tj ET
+BT /F2 11 Tf 54.00 472.00 Td (90. What is thermal shutdown?) Tj ET
+BT /F1 10 Tf 54.00 448.00 Td (Thermal shutdown turns off or limits a device when it gets too hot.) Tj ET
+BT /F2 14 Tf 54.00 417.00 Td (KiCad, Documentation, And Workflow) Tj ET
+BT /F2 11 Tf 54.00 388.00 Td (91. Why did you use KiCad?) Tj ET
+BT /F1 10 Tf 54.00 364.00 Td (KiCad is a standard open-source EDA tool for schematic capture and PCB design.) Tj ET
+BT /F2 11 Tf 54.00 341.00 Td (92. Why did you make custom symbols?) Tj ET
+BT /F1 10 Tf 54.00 317.00 Td (Custom local symbols avoid missing-library problems and keep the schematic portable.) Tj ET
+BT /F2 11 Tf 54.00 294.00 Td (93. What does the KiCad ERC prove?) Tj ET
+BT /F1 10 Tf 54.00 270.00 Td (It proves there are no detected schematic electrical-rule violations in the current) Tj ET
+BT /F1 10 Tf 54.00 256.00 Td (schematic representation.) Tj ET
+BT /F2 11 Tf 54.00 233.00 Td (94. Does ERC prove the circuit will work?) Tj ET
+BT /F1 10 Tf 54.00 209.00 Td (No. ERC catches schematic consistency issues, not full electrical performance or layout) Tj ET
+BT /F1 10 Tf 54.00 195.00 Td (correctness.) Tj ET
+BT /F2 11 Tf 54.00 172.00 Td (95. Why export a schematic PDF?) Tj ET
+BT /F1 10 Tf 54.00 148.00 Td (A PDF is easy to review, share, and attach to reports or interview portfolios.) Tj ET
+BT /F2 11 Tf 54.00 125.00 Td (96. Why include a BOM?) Tj ET
+BT /F1 10 Tf 54.00 101.00 Td (A BOM shows part choices, reference designators, functions, packages, and project) Tj ET
+BT /F1 10 Tf 54.00 87.00 Td (organization.) Tj ET
+endstream
+endobj
+47 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 46 0 R >>
+endobj
+48 0 obj
+<< /Length 3528 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (23) Tj ET
+BT /F2 11 Tf 54.00 772.00 Td (97. What makes a schematic visually good?) Tj ET
+BT /F1 10 Tf 54.00 748.00 Td (Clear left-to-right flow, readable labels, grouped functions, minimal wire crossings,) Tj ET
+BT /F1 10 Tf 54.00 734.00 Td (proper net names, and uncluttered notes.) Tj ET
+BT /F2 11 Tf 54.00 711.00 Td (98. What was cleaned in the LTspice schematic?) Tj ET
+BT /F1 10 Tf 54.00 687.00 Td (Long formulas were moved into `.func` directives, duplicated labels were removed, rails) Tj ET
+BT /F1 10 Tf 54.00 673.00 Td (were spaced out, and directives were grouped separately.) Tj ET
+BT /F2 11 Tf 54.00 650.00 Td (99. What was cleaned in the KiCad schematic?) Tj ET
+BT /F1 10 Tf 54.00 626.00 Td (Symbols were made more recognizable, labels were spaced away from pins, the sheet size) Tj ET
+BT /F1 10 Tf 54.00 612.00 Td (was increased, and ERC was kept clean.) Tj ET
+BT /F2 11 Tf 54.00 589.00 Td (100. Why is documentation important?) Tj ET
+BT /F1 10 Tf 54.00 565.00 Td (Documentation proves that the designer understands the design, not just that files) Tj ET
+BT /F1 10 Tf 54.00 551.00 Td (exist.) Tj ET
+BT /F2 14 Tf 54.00 520.00 Td (Deep Interview Questions) Tj ET
+BT /F2 11 Tf 54.00 491.00 Td (101. If the final loads are 500 mA, 600 mA, and 800 mA, what is your biggest) Tj ET
+BT /F2 11 Tf 54.00 476.00 Td (concern?) Tj ET
+BT /F1 10 Tf 54.00 452.00 Td (The biggest concern is regulator current and thermal rating. The guide-selected parts) Tj ET
+BT /F1 10 Tf 54.00 438.00 Td (must be verified or replaced with parts that can safely supply those currents.) Tj ET
+BT /F2 11 Tf 54.00 415.00 Td (102. Would you fabricate this exact board?) Tj ET
+BT /F1 10 Tf 54.00 391.00 Td (Not without final regulator selection, datasheet component values, footprint) Tj ET
+BT /F1 10 Tf 54.00 377.00 Td (verification, thermal checks, and PCB layout review.) Tj ET
+BT /F2 11 Tf 54.00 354.00 Td (103. What would you say if an interviewer points out the regulator current) Tj ET
+BT /F2 11 Tf 54.00 339.00 Td (mismatch?) Tj ET
+BT /F1 10 Tf 54.00 315.00 Td (I would say that is a valid catch. In this project the parts were guide/model) Tj ET
+BT /F1 10 Tf 54.00 301.00 Td (references, and the report explicitly notes that production parts must be current-rated.) Tj ET
+BT /F1 10 Tf 54.00 287.00 Td (That shows I understand the difference between a learning schematic and a fabrication-) Tj ET
+BT /F1 10 Tf 54.00 273.00 Td (ready design.) Tj ET
+BT /F2 11 Tf 54.00 250.00 Td (104. How would you choose final regulators?) Tj ET
+BT /F1 10 Tf 54.00 226.00 Td (I would define input range, output voltage, max current, ripple limit, efficiency) Tj ET
+BT /F1 10 Tf 54.00 212.00 Td (target, package constraints, thermal environment, cost, availability, and then compare) Tj ET
+BT /F1 10 Tf 54.00 198.00 Td (datasheet-recommended application circuits.) Tj ET
+BT /F2 11 Tf 54.00 175.00 Td (105. How much current margin would you prefer?) Tj ET
+BT /F1 10 Tf 54.00 151.00 Td (I would usually choose a regulator with comfortable margin above expected maximum) Tj ET
+BT /F1 10 Tf 54.00 137.00 Td (current, depending on thermal conditions and transient requirements.) Tj ET
+BT /F2 11 Tf 54.00 114.00 Td (106. What thermal checks would you run?) Tj ET
+BT /F1 10 Tf 54.00 90.00 Td (Estimate power loss, junction temperature rise, package thermal resistance, copper area,) Tj ET
+BT /F1 10 Tf 54.00 76.00 Td (airflow, and worst-case ambient temperature.) Tj ET
+endstream
+endobj
+49 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 48 0 R >>
+endobj
+50 0 obj
+<< /Length 3294 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (24) Tj ET
+BT /F2 11 Tf 54.00 772.00 Td (107. How do you estimate LDO junction temperature?) Tj ET
+BT /F1 10 Tf 54.00 748.00 Td (Calculate power loss, multiply by thermal resistance, and add ambient temperature: `Tj =) Tj ET
+BT /F1 10 Tf 54.00 734.00 Td (Ta + P * thetaJA`.) Tj ET
+BT /F2 11 Tf 54.00 711.00 Td (108. How would you validate sequencing on hardware?) Tj ET
+BT /F1 10 Tf 54.00 687.00 Td (Use an oscilloscope to probe all enable pins and output rails at test points during) Tj ET
+BT /F1 10 Tf 54.00 673.00 Td (power-up and power-down.) Tj ET
+BT /F2 11 Tf 54.00 650.00 Td (109. How would you validate load transient?) Tj ET
+BT /F1 10 Tf 54.00 626.00 Td (Use an electronic load to step current and capture voltage droop and recovery on the) Tj ET
+BT /F1 10 Tf 54.00 612.00 Td (oscilloscope.) Tj ET
+BT /F2 11 Tf 54.00 589.00 Td (110. What would you check if Rail B starts before Rail A is stable?) Tj ET
+BT /F1 10 Tf 54.00 565.00 Td (Check the enable timing circuit, RC values, enable thresholds, power-good signals, and) Tj ET
+BT /F1 10 Tf 54.00 551.00 Td (input ramp behavior.) Tj ET
+BT /F2 11 Tf 54.00 528.00 Td (111. What would you check if Rail C droops too much?) Tj ET
+BT /F1 10 Tf 54.00 504.00 Td (Check output capacitance, capacitor ESR/ESL, regulator transient response, layout, load) Tj ET
+BT /F1 10 Tf 54.00 490.00 Td (step magnitude, and current limit.) Tj ET
+BT /F2 11 Tf 54.00 467.00 Td (112. What would you check if a rail oscillates?) Tj ET
+BT /F1 10 Tf 54.00 443.00 Td (Check regulator stability, output capacitor value/ESR, feedback routing, layout, and) Tj ET
+BT /F1 10 Tf 54.00 429.00 Td (datasheet compensation guidance.) Tj ET
+BT /F2 11 Tf 54.00 406.00 Td (113. What layout issue can break a buck converter?) Tj ET
+BT /F1 10 Tf 54.00 382.00 Td (Large high-current loop area or poor switch-node layout can create noise, ringing, EMI,) Tj ET
+BT /F1 10 Tf 54.00 368.00 Td (and instability.) Tj ET
+BT /F2 11 Tf 54.00 345.00 Td (114. Why is a ground plane important?) Tj ET
+BT /F1 10 Tf 54.00 321.00 Td (A ground plane provides low-impedance return paths, reduces noise, and improves thermal) Tj ET
+BT /F1 10 Tf 54.00 307.00 Td (spreading.) Tj ET
+BT /F2 11 Tf 54.00 284.00 Td (115. How would you handle analog sensors on the 3.3 V rail?) Tj ET
+BT /F1 10 Tf 54.00 260.00 Td (I might add filtering, local decoupling, ferrite bead isolation, or a low-noise LDO if) Tj ET
+BT /F1 10 Tf 54.00 246.00 Td (the sensor is noise-sensitive.) Tj ET
+BT /F2 11 Tf 54.00 223.00 Td (116. What is the difference between schematic correctness and layout) Tj ET
+BT /F2 11 Tf 54.00 208.00 Td (correctness?) Tj ET
+BT /F1 10 Tf 54.00 184.00 Td (Schematic correctness means the logical circuit connections are right. Layout) Tj ET
+BT /F1 10 Tf 54.00 170.00 Td (correctness means physical placement, routing, grounding, thermal, and noise behavior) Tj ET
+BT /F1 10 Tf 54.00 156.00 Td (are right.) Tj ET
+BT /F2 11 Tf 54.00 133.00 Td (117. Why include both `.asc` and `.cir` files?) Tj ET
+BT /F1 10 Tf 54.00 109.00 Td (The `.asc` is easier to view and edit visually. The `.cir` is a plain-text companion) Tj ET
+BT /F1 10 Tf 54.00 95.00 Td (netlist useful for review and fallback simulation.) Tj ET
+endstream
+endobj
+51 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 50 0 R >>
+endobj
+52 0 obj
+<< /Length 1645 >>
+stream
+BT /F2 8 Tf 54.00 814.00 Td (Complete Report and Interview Q&A) Tj ET
+BT /F1 8 Tf 532.20 24.00 Td (25) Tj ET
+BT /F2 11 Tf 54.00 772.00 Td (118. What would make this project stronger?) Tj ET
+BT /F1 10 Tf 54.00 748.00 Td (A routed PCB, regulator replacement with current-rated parts, detailed ripple) Tj ET
+BT /F1 10 Tf 54.00 734.00 Td (simulation, real bench measurements, and thermal images would make it stronger.) Tj ET
+BT /F2 11 Tf 54.00 711.00 Td (119. What did you learn from the project?) Tj ET
+BT /F1 10 Tf 54.00 687.00 Td (I learned how to organize a power tree, plan sequencing, build a readable LTspice) Tj ET
+BT /F1 10 Tf 54.00 673.00 Td (simulation, clean a KiCad schematic, and document engineering limitations honestly.) Tj ET
+BT /F2 11 Tf 54.00 650.00 Td (120. Give the final 30-second pitch.) Tj ET
+BT /F1 10 Tf 54.00 626.00 Td (This is a multi-rail power board for an SoC and sensor cluster. It takes 5 V and) Tj ET
+BT /F1 10 Tf 54.00 612.00 Td (generates 1.2 V, 1.8 V, and 3.3 V rails with controlled startup sequencing. I simulated) Tj ET
+BT /F1 10 Tf 54.00 598.00 Td (the startup and sensor-load transient in LTspice, created an ERC-clean KiCad schematic) Tj ET
+BT /F1 10 Tf 54.00 584.00 Td (with protection, output capacitors, load elements, enable networks, and test points, and) Tj ET
+BT /F1 10 Tf 54.00 570.00 Td (documented the design with BOM, reports, plots, and interview Q&A. The project) Tj ET
+BT /F1 10 Tf 54.00 556.00 Td (demonstrates architecture-level power design and a realistic hardware workflow, while) Tj ET
+BT /F1 10 Tf 54.00 542.00 Td (clearly identifying what must be upgraded before fabrication.) Tj ET
+endstream
+endobj
+53 0 obj
+<< /Type /Page /Parent 54 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 52 0 R >>
+endobj
+54 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R 47 0 R 49 0 R 51 0 R 53 0 R] /Count 25 >>
+endobj
+55 0 obj
+<< /Type /Catalog /Pages 54 0 R >>
+endobj
+xref
+0 56
+0000000000 65535 f 
+0000000015 00000 n 
+0000000085 00000 n 
+0000000160 00000 n 
+0000000228 00000 n 
+0000003703 00000 n 
+0000003850 00000 n 
+0000007577 00000 n 
+0000007724 00000 n 
+0000010629 00000 n 
+0000010776 00000 n 
+0000013575 00000 n 
+0000013724 00000 n 
+0000016734 00000 n 
+0000016883 00000 n 
+0000019926 00000 n 
+0000020075 00000 n 
+0000023036 00000 n 
+0000023185 00000 n 
+0000026505 00000 n 
+0000026654 00000 n 
+0000029551 00000 n 
+0000029700 00000 n 
+0000033150 00000 n 
+0000033299 00000 n 
+0000036119 00000 n 
+0000036268 00000 n 
+0000039721 00000 n 
+0000039870 00000 n 
+0000043626 00000 n 
+0000043775 00000 n 
+0000044865 00000 n 
+0000045014 00000 n 
+0000048080 00000 n 
+0000048229 00000 n 
+0000051355 00000 n 
+0000051504 00000 n 
+0000054694 00000 n 
+0000054843 00000 n 
+0000057965 00000 n 
+0000058114 00000 n 
+0000061183 00000 n 
+0000061332 00000 n 
+0000064622 00000 n 
+0000064771 00000 n 
+0000067826 00000 n 
+0000067975 00000 n 
+0000070885 00000 n 
+0000071034 00000 n 
+0000074615 00000 n 
+0000074764 00000 n 
+0000078111 00000 n 
+0000078260 00000 n 
+0000079958 00000 n 
+0000080107 00000 n 
+0000080332 00000 n 
+trailer
+<< /Size 56 /Root 55 0 R >>
+startxref
+80383
+%%EOF

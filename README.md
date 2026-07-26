@@ -31,7 +31,10 @@ bom/       project BOM
 - `kicad/PowerRailsBoard_KiCad/PowerRailsBoard.kicad_pro`
 - `kicad/PowerRailsBoard_KiCad/PowerRailsBoard.kicad_sch`
 - `docs/Exhaustive_Project_Report.md`
+- `docs/Exhaustive_Project_Report.pdf`
 - `docs/Comprehensive_Interview_QA.md`
+- `docs/Comprehensive_Interview_QA.pdf`
+- `docs/Complete_Report_and_Interview_QA.pdf`
 - `docs/Complete_Project_Report.md`
 - `docs/Interview_Questions_and_Answers.md`
 - `results/PowerRails_Sequencing_Plot.png`
