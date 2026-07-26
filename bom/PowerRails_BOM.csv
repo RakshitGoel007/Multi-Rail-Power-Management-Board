@@ -1,0 +1,26 @@
+Ref,Part,Function,Package,Value_or_Rating,Notes
+U1,TI TPS62203,3.3 V synchronous buck,SOT23-5,3.3 V output,Guide-selected model part; check current rating before fabrication
+U2,TI TPS62240,1.8 V synchronous buck,SOT23-5 or WSON,Adjustable to 1.8 V,Guide-selected model part; check current rating before fabrication
+U3,TI TLV70012,1.2 V low-noise LDO,SOT23-5 or family package,1.2 V output,Guide-selected model part; check current rating before fabrication
+Q1,AO3401 or similar P-MOSFET,3.3 V sensor rail load switch,SOT23-3,Logic-level P-MOSFET,Used for sensor hot-plug/power gating
+D1,SS34 Schottky diode,Reverse-polarity input protection,SMA/DO-214,3 A class Schottky,Simple input protection
+CIN1,MLCC X7R,Input capacitor,0805/1206,10 uF,Place close to regulator inputs
+COUT_A,MLCC X7R,1.2 V output capacitor,0805/1206,22 uF,Behavioral simulation value
+COUT_B,MLCC X7R,1.8 V output capacitor,0805/1206,22 uF,Behavioral simulation value
+COUT_C,MLCC X7R,3.3 V output capacitor,0805/1206,22 uF,Behavioral simulation value
+RLOAD_A,Resistor,1.2 V equivalent load,Power-rated resistor,2.4 ohm,Models 500 mA load
+RLOAD_B,Resistor,1.8 V equivalent load,Power-rated resistor,3.0 ohm,Models 600 mA load
+ILOAD_C,Current source,3.3 V transient load,LTspice element,PULSE 0.1 A to 0.8 A,Models sensor wake-up current step
+R_EN_A,Resistor,Enable delay network,0603,Small or 0 ohm equivalent,Immediate enable
+R_EN_B,Resistor,Enable delay network,0603,Example 10k to 20k,Target about 2 ms delay
+R_EN_C,Resistor,Enable delay network,0603,Example 20k to 40k,Target about 4 ms delay
+C_EN_A,Capacitor,Enable delay network,0603,Small or omitted,Immediate enable
+C_EN_B,Capacitor,Enable delay network,0603,0.1 uF to 1 uF range,Tune for about 2 ms delay
+C_EN_C,Capacitor,Enable delay network,0603,0.1 uF to 1 uF range,Tune for about 4 ms delay
+TP_VIN,Test point,Input measurement,Test point,VIN_5V,Bring-up debug
+TP_A,Test point,Rail A measurement,Test point,RAIL_A_1V2,Bring-up debug
+TP_B,Test point,Rail B measurement,Test point,RAIL_B_1V8,Bring-up debug
+TP_C,Test point,Rail C measurement,Test point,RAIL_C_3V3,Bring-up debug
+TP_EN_A,Test point,Enable A measurement,Test point,EN_A,Bring-up debug
+TP_EN_B,Test point,Enable B measurement,Test point,EN_B,Bring-up debug
+TP_EN_C,Test point,Enable C measurement,Test point,EN_C,Bring-up debug

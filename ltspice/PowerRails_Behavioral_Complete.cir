@@ -1,0 +1,49 @@
+* Multi-Rail Power Management Board - Behavioral LTspice Simulation
+* Clean companion netlist for PowerRails_Behavioral_Complete.asc
+* Input: 5 V USB rail
+* Outputs:
+*   Rail A: 1.2 V core, enabled at 0 ms, 500 mA load
+*   Rail B: 1.8 V I/O, enabled at 2 ms, 600 mA load
+*   Rail C: 3.3 V sensors, enabled at 4 ms, load step at 8 ms
+
+VINPUT VIN_5V 0 5
+
+.func RA(t) if(t>=0,1.2,0)
+.func RB(t) if(t>=2m,1.8,0)
+.func RC(t) if(t>=4m,3.292,0)-if(t>=8m,if(t<12m,56m,0),0)
+.func LOAD(t) if(t>=8m,if(t<12m,0.7,0),0)
+.func ENA(t) if(t>=0,5,0)
+.func ENB(t) if(t>=2m,5,0)
+.func ENC(t) if(t>=4m,5,0)
+
+* Behavioral regulator outputs.
+BRAIL_A RAIL_A_1V2 0 V=RA(time)
+CAOUT RAIL_A_1V2 0 22u
+RLOADA RAIL_A_1V2 0 2.4
+
+BRAIL_B RAIL_B_1V8 0 V=RB(time)
+CBOUT RAIL_B_1V8 0 22u
+RLOADB RAIL_B_1V8 0 3
+
+BRAIL_C RAIL_C_3V3 0 V=RC(time)
+CCOUT RAIL_C_3V3 0 22u
+RLOADC_LIGHT RAIL_C_3V3 0 33
+BLOADSTEP RAIL_C_3V3 0 I=LOAD(time)
+
+* Enable monitor signals for plotting the intended sequence.
+BEN_A EN_A 0 V=ENA(time)
+BEN_B EN_B 0 V=ENB(time)
+BEN_C EN_C 0 V=ENC(time)
+
+.tran 20m startup
+.save V(VIN_5V) V(EN_A) V(EN_B) V(EN_C) V(RAIL_A_1V2) V(RAIL_B_1V8) V(RAIL_C_3V3) I(BLOADSTEP)
+
+* Checks for report values.
+.meas tran RailA_90pct_time WHEN V(RAIL_A_1V2)=1.08 RISE=1
+.meas tran RailB_90pct_time WHEN V(RAIL_B_1V8)=1.62 RISE=1
+.meas tran RailC_90pct_time WHEN V(RAIL_C_3V3)=2.97 RISE=1
+.meas tran RailC_pre_step_avg AVG V(RAIL_C_3V3) FROM=7m TO=7.8m
+.meas tran RailC_load_step_min MIN V(RAIL_C_3V3) FROM=8m TO=9m
+.meas tran RailC_recovered_avg AVG V(RAIL_C_3V3) FROM=9m TO=12m
+
+.end

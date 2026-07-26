@@ -1,0 +1,70 @@
+**$ENCRYPTED_LIB
+**$INTERFACE
+* TLV70012 Model
+***************************************************************************
+** This product is designed as an aid for customers of Texas Instruments.**
+** No warranties, either expressed or implied, with respect to this third**
+** party software (if any) or with respect to its fitness for any        **
+** particular purpose is claimed by Texas Instruments or the author. The **
+** software (if any) is provided soley on an "as is" basis. The entire   **
+** risk as to its quality and performance is with the customer           **
+********************************************************************************
+* 
+* (C) Copyright 2011 Texas Instruments Incorporated  . All rights reserved.
+*
+* Released by: Analog e-Lab Design Center, Texas Instruments Inc.
+* Part: TLV70012
+* Date: 04/05/2011
+* Model Type: TRANSIENT
+* Simulator: PSPICE
+* EVM Order Number: 
+* EVM Users Guide: 
+* Datasheet: SLVSA00B - SEPTEMBER 2009 - REVISED DECEMBER 2010
+*
+*****************************************************************************
+*
+* Updates:
+*
+* Final 1.00
+* Release to Web.
+*
+*********************************************************************************
+* source TLV70012
+*$
+.SUBCKT TLV70012 IN GND EN OUT
+$CDNENCSTART
+eee8c5c7a2bc4b01f045f303678664e7916da0bae22e8cb0bba041dd67c69ce448ea70148a9ac1670c8926c1ac5057c8ccfcd77bf87ca9dce2e9103f51d0de79
+259e22a51c65bc4dee29b1af577e67324e552c8ab90b219a64615adc73efa63218909a58bd8b76904fcdb80814ad954a373688de6049867ad38aff4e12555a5d
+af1dff2e8151d1b3ad961377e023ab654e552c8ab90b219a64615adc73efa632ade02a6c3e64e287c90ba24b54740a7a2a931f55ee8d47b0d3b55e518a88efc0
+259e22a51c65bc4da1b65c0354cbc4412531ce9df5eb0603c921153da52548beb6f9c085d8eda78df34d311b7ac26f46c1f60d7ea22f9ce9e07acc9f85f01ad6
+259e22a51c65bc4d51a924006509d8924e552c8ab90b219a64615adc73efa632d9ae151f53d140dbc88e473ce12bfd9706ea93996f83a7bddf7a8af3bf3808c1
+259e22a51c65bc4d183fce15e18b18aa239bdbe658d21d004e837baae6a4ac8864615adc73efa6327ef5870a5e3da03d727a1739f56464652ba2c1c1728c017b
+af1dff2e8151d1b3ed846c24bda46d9644f91394b9d9e84610977954546a053d822ef85746450e5043e100eee5b305a94c49b18e65b20125cd81523dba430406
+3fc4c23aa5b659665a17e7431216915f504ad14f2fb29f6c71cf3cb4f0f12316644126c9831a96bd58f95f397589bbe7e854495f016ffd76d22b26a7b6cfc473
+5d078000650a8fa5f720513110d464d784228f9fa61e3ec38675a01b2db95be71bddfb574903d61a725ed083df9a515d637d1b072f0e2ebe507e5c82eb9edef9
+af1dff2e8151d1b3ed846c24bda46d96f5687491f31f292410977954546a053dca2f8c83eb5775a39c064bf94d8ce6078492e52ca990713779eccb7eaf03f4e4
+97273dca314e0f137158f7066bb1acc8e884561dc52031d166f9df056a16ed558b31c7db94f482141bddfb574903d61a725ed083df9a515d654bea6dfaccad75
+427c310c1c1f6b42fcdff44f046d00717e012483319edfad3d1a96345bca769f156308c046a85546e73070a45f1d549c8ae9764513fec3e270ea434bac481a10
+af1dff2e8151d1b3ed846c24bda46d9605f06f9213ce83ba10977954546a053dca2f8c83eb5775a3ecbee74170ca80188492e52ca990713779eccb7eaf03f4e4
+a96c53d84a6e3a2c777909964b84d5bf2b81e10e996e19ac294ff995b8f67f658ae9764513fec3e28e779e2db5abbf64f4f2ab4e4c8c394ffa8db939ff1224c4
+cd080d6014ef79b45b21fcbb5127d82b1bddfb574903d61a725ed083df9a515d637d1b072f0e2ebed3bdfb0233d3746a97fd1405997c9bbe211952a674e6752c
+ce1e320d9877b21bc90ba24b54740a7aa7d24ab7ae54f3c7cb82e1066e82af78e73070a45f1d549c8ae9764513fec3e28e779e2db5abbf646871dc705148aaae
+259e22a51c65bc4d183fce15e18b18aacd9f9b0fe66d8ad14e837baae6a4ac8864615adc73efa6325ff6f42c959550fbd48c1d14d1b0c61c2ba2c1c1728c017b
+259e22a51c65bc4d695c770f0bec7fcc4e552c8ab90b219a605c5accbc975768c76c6f59598c925ec90ba24b54740a7ab286dd1121d2a6d23c33417d989f4d2c
+79b347c5b85360ef9dd0e5cec1514afc4e552c8ab90b219a64615adc73efa632d9ae151f53d140db68bc7b4cd898b01306ea93996f83a7bddf7a8af3bf3808c1
+79b347c5b85360ef9161d902182c168c4e552c8ab90b219a64615adc73efa63203713b4f43695ba78c0e8091394b9856ac0bbcb25a375ea3a3326a35d52f6cdd
+259e22a51c65bc4d1db1e7e640c0f26a4e552c8ab90b219a64615adc73efa63218909a58bd8b76908c0e8091394b985661a0613e3a41a223d38aff4e12555a5d
+d153893f36515c509a2f4988e6fd1384e3d4223c66a65ea17c3d70f9a365ec31fc8a520169f0e78fad7181505892a4c88e95fdd389b2972f9e301436d16375b1
+c90ba24b54740a7accefcc2bf8692e3b8ae9764513fec3e28e779e2db5abbf64f4f2ab4e4c8c394f02f29020cc6bed9a5594c975cd36d3d3456e122046cc1edb
+$CDNENCFINISH
+.ENDS TLV70012
+*$
+.subckt SCHEMATIC1_TLV70012_F1 1 2 3 4  
+$CDNENCSTART
+eee8c5c7a2bc4b01f045f303678664e7916da0bae22e8cb0bba041dd67c69ce448ea70148a9ac1670c8926c1ac5057c8ccfcd77bf87ca9dce2e9103f51d0de79
+4f9bfd860debeaf29a2f4988e6fd138446b92e86e8aaa0ba6346aa19326e7599631ebabd5b20ecbf57e2c5aa80851370dcb2222a3ac73375375bc7f7c20b6cb9
+476007b7708ce3cdb942d935367989681852d2bae2562872b9ef19aa8805d3198e3bef92b0a3919088b82ad28ee6d41b53c9f4b6d37454d87b866626a673e230
+$CDNENCFINISH
+.ends SCHEMATIC1_TLV70012_F1
+*$
+

@@ -1,0 +1,11 @@
+.DS_Store
+*.raw
+*.log
+*.db
+*.op.raw
+*.plt
+*.bak
+*.tmp
+*.autosave
+*.kicad_prl
+.history/
